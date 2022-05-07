@@ -215,8 +215,8 @@ const menu = (
 			<Menu.Item key='礼装东海帝王'>礼装东海帝王</Menu.Item>
 			<Menu.Item key='目白麦昆'>目白麦昆</Menu.Item>
 			<Menu.Item key='礼装目白麦昆'>礼装目白麦昆</Menu.Item>
-			{/* <Menu.Item key="鲁道夫象征">鲁道夫象征</Menu.Item>
-            <Menu.Item key="和服鲁道夫象征">和服鲁道夫象征</Menu.Item> */}
+			{/* <Menu.Item key='鲁道夫象征'>鲁道夫象征</Menu.Item>
+			<Menu.Item key='和服鲁道夫象征'>和服鲁道夫象征</Menu.Item> */}
 			<Menu.Item key='丸善斯基'>丸善斯基</Menu.Item>
 			<Menu.Item key='泳装丸善斯基'>泳装丸善斯基</Menu.Item>
 			<Menu.Item key='小栗帽'>小栗帽</Menu.Item>
@@ -226,50 +226,54 @@ const menu = (
 			<Menu.Item key='万圣节米浴'>万圣节米浴</Menu.Item>
 			<Menu.Item key='竹正歌剧王'>竹正歌剧王</Menu.Item>
 			<Menu.Item key='春节竹正歌剧王'>春节竹正歌剧王</Menu.Item>
-			{/* <Menu.Item key="美浦波旁">美浦波旁</Menu.Item>
-            <Menu.Item key="情人节美浦波旁">情人节美浦波旁</Menu.Item> */}
+			{/* <Menu.Item key='美浦波旁'>美浦波旁</Menu.Item>
+			<Menu.Item key='情人节美浦波旁'>情人节美浦波旁</Menu.Item> */}
 			<Menu.Item key='琵琶晨光'>琵琶晨光</Menu.Item>
 			<Menu.Item key='圣诞琵琶晨光'>圣诞琵琶晨光</Menu.Item>
 			<Menu.Item key='真机伶'>真机伶</Menu.Item>
-			{/* <Menu.Item key="成田大进">成田大进</Menu.Item> */}
+			{/* <Menu.Item key='成田大进'>成田大进</Menu.Item> */}
 			<Menu.Item key='醒目飞鹰'>醒目飞鹰</Menu.Item>
 			<Menu.Item key='成田白仁'>成田白仁</Menu.Item>
 			<Menu.Item key='空中欢歌'>空中欢歌</Menu.Item>
 			<Menu.Item key='婚纱空中欢歌'>婚纱空中欢歌</Menu.Item>
 			<Menu.Item key='摩耶重炮'>摩耶重炮</Menu.Item>
 			<Menu.Item key='婚纱摩耶重炮'>婚纱摩耶重炮</Menu.Item>
-			<Menu.Item key='星云天空'>星云天空</Menu.Item>
-			<Menu.Item key='菱亚马逊'>菱亚马逊</Menu.Item>
+			{/* <Menu.Item key='星云天空'>星云天空</Menu.Item>
+			<Menu.Item key='礼装星云天空'>礼装星云天空</Menu.Item> */}
+			{/* <Menu.Item key='菱亚马逊'>菱亚马逊</Menu.Item> */}
 			<Menu.Item key='草上飞'>草上飞</Menu.Item>
 			<Menu.Item key='治愈师草上飞'>治愈师草上飞</Menu.Item>
 			<Menu.Item key='神鹰'>神鹰</Menu.Item>
 			<Menu.Item key='格斗家神鹰'>格斗家神鹰</Menu.Item>
-			{/* <Menu.Item key="富士奇迹">富士奇迹</Menu.Item> */}
+			{/* <Menu.Item key='富士奇迹'>富士奇迹</Menu.Item>
+			<Menu.Item key='礼装富士奇迹'>礼装富士奇迹</Menu.Item> */}
 			<Menu.Item key='黄金城市'>黄金城市</Menu.Item>
 			<Menu.Item key='和服黄金城市'>和服黄金城市</Menu.Item>
-			{/* <Menu.Item key="名将怒涛">名将怒涛</Menu.Item> */}
+			{/* <Menu.Item key='名将怒涛'>名将怒涛</Menu.Item> */}
 			<Menu.Item key='荣进闪耀'>荣进闪耀</Menu.Item>
 			<Menu.Item key='情人节荣进闪耀'>情人节荣进闪耀</Menu.Item>
 			<Menu.Item key='待兼福来'>待兼福来</Menu.Item>
 			<Menu.Item key='礼装待兼福来'>礼装待兼福来</Menu.Item>
 			<Menu.Item key='菱曙'>菱曙</Menu.Item>
-			{/* <Menu.Item key="爱丽数码">爱丽数码</Menu.Item> */}
+			{/* <Menu.Item key='爱丽数码'>爱丽数码</Menu.Item> */}
 			<Menu.Item key='超级小海湾'>超级小海湾</Menu.Item>
 			<Menu.Item key='万圣节超级小海湾'>万圣节超级小海湾</Menu.Item>
-			{/* <Menu.Item key="川上公主">川上公主</Menu.Item> */}
+			{/* <Menu.Item key='川上公主'>川上公主</Menu.Item> */}
 			<Menu.Item key='曼城茶座'>曼城茶座</Menu.Item>
 			<Menu.Item key='东瀛佐敦'>东瀛佐敦</Menu.Item>
-			{/* <Menu.Item key="目白多伯">目白多伯</Menu.Item> */}
-			{/* <Menu.Item key="美妙姿势">美妙姿势</Menu.Item> */}
-			{/* <Menu.Item key="玉藻十字">玉藻十字</Menu.Item> */}
+			{/* <Menu.Item key='目白多伯'>目白多伯</Menu.Item> */}
+			{/* <Menu.Item key='美妙姿势'>美妙姿势</Menu.Item> */}
+			{/* <Menu.Item key='玉藻十字'>玉藻十字</Menu.Item> */}
 			<Menu.Item key='春乌拉拉'>春乌拉拉</Menu.Item>
 			<Menu.Item key='春节春乌拉拉'>春节春乌拉拉</Menu.Item>
 			<Menu.Item key='樱花千代王'>樱花千代王</Menu.Item>
-			{/* <Menu.Item key="目白阿尔丹">目白阿尔丹</Menu.Item> */}
-			{/* <Menu.Item key="爱慕织姬">爱慕织姬</Menu.Item> */}
+			{/* <Menu.Item key='目白阿尔丹'>目白阿尔丹</Menu.Item> */}
+			{/* <Menu.Item key='爱慕织姬'>爱慕织姬</Menu.Item> */}
 			<Menu.Item key='北部玄驹'>北部玄驹</Menu.Item>
-			{/* <Menu.Item key="里见光钻">里见光钻</Menu.Item> */}
-			{/* <Menu.Item key="目白光明">目白光明</Menu.Item> */}
+			{/* <Menu.Item key='里见光钻'>里见光钻</Menu.Item> */}
+			{/* <Menu.Item key='目白光明'>目白光明</Menu.Item> */}
+			{/* <Menu.Item key='西野花'>西野花</Menu.Item> */}
+			{/* <Menu.Item key='八重无敌'>八重无敌</Menu.Item> */}
 			<Menu.Item key='大和赤骥'>大和赤骥</Menu.Item>
 			<Menu.Item key='黄金船'>黄金船</Menu.Item>
 			<Menu.Item key='伏特加'>伏特加</Menu.Item>
@@ -279,7 +283,9 @@ const menu = (
 			<Menu.Item key='爱丽速子'>爱丽速子</Menu.Item>
 			<Menu.Item key='樱花进王'>樱花进王</Menu.Item>
 			<Menu.Item key='优秀素质'>优秀素质</Menu.Item>
+			<Menu.Item key='啦啦队优秀素质'>啦啦队优秀素质</Menu.Item>
 			<Menu.Item key='帝王光辉'>帝王光辉</Menu.Item>
+			<Menu.Item key='应援团帝王光辉'>应援团帝王光辉</Menu.Item>
 		</SubMenu>
 		<Menu.Item key='CHECK_FOR_UPDATE'>检查更新</Menu.Item>
 		<Menu.Item key='QUIT'>退出应用</Menu.Item>
@@ -337,6 +343,7 @@ function umaNameToUmaCode(umaName) {
 		case '婚纱摩耶重炮':
 			return 'MayanoTopGun';
 		case '星云天空':
+		case '礼装星云天空':
 			return 'SeiunSky';
 		case '菱亚马逊':
 			return 'HishiAmazon';
@@ -347,6 +354,7 @@ function umaNameToUmaCode(umaName) {
 		case '格斗家神鹰':
 			return 'ElCondorPasa';
 		case '富士奇迹':
+		case '礼装富士奇迹':
 			return 'FujiKiseki';
 		case '黄金城市':
 		case '和服黄金城市':
@@ -393,6 +401,10 @@ function umaNameToUmaCode(umaName) {
 			return 'SatonoDiamond';
 		case '目白光明':
 			return 'MejiroBright';
+		case '西野花':
+			return 'NishinoFlower';
+		case '八重无敌':
+			return 'YaenoMuteki';
 		case '大和赤骥':
 			return 'DaiwaScarlet';
 		case '黄金船':
@@ -410,8 +422,10 @@ function umaNameToUmaCode(umaName) {
 		case '樱花进王':
 			return 'SakuraBakushinO';
 		case '优秀素质':
+		case '啦啦队优秀素质':
 			return 'NiceNature';
 		case '帝王光辉':
+		case '应援团帝王光辉':
 			return 'KingHalo';
 	}
 }
