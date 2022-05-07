@@ -1,6 +1,6 @@
 {
 	"name": "derby-pet",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"main": "main.js",
 	"author": "德布罗煜",
 	"description": "一款基于electron的赛马娘桌宠",
@@ -42,6 +42,6 @@
 		"build": "webpack --mode production",
 		"elect": "set NODE_ENV=development&&electron .",
 		"assets": "assetsAfterBuild.bat",
-		"dist": "yarn build&&yarn assets&&electron-packager ./build DerbyPet --icon=./public/electronAssets/favicon.ico --platform=win32 --arch=x64 --out ./dist --asar --overwrite&&nodeModulesAfterDist.bat win32 x64"
+		"dist": "yarn build&&yarn assets&&electron-packager ./build DerbyPet --icon=./public/electronAssets/favicon.ico --platform=win32 --arch=x64 --out ./dist --asar --overwrite --win32metadata.requested-execution-level=requireAdministrator&&nodeModulesAfterDist.bat win32 x64"
 	}
 }

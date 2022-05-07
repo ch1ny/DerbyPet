@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "DerbyPet"
-#define MyAppVersion "2.0.0"
+#define MyAppVersion "2.0.1"
 #define MyAppPublisher "Shandong University, AioliaRegulus"
 #define MyAppURL "https://aiolia.top/"
 #define MyAppExeName "DerbyPet.exe"
@@ -27,7 +27,9 @@ OutputBaseFilename=DerbyPetSetup
 SetupIconFile=.\public\electronAssets\favicon.ico
 Compression=lzma
 SolidCompression=yes
-WizardStyle=modern
+WizardStyle=modern    
+PrivilegesRequired=admin
+; Run Setup Programme As Administrator
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
