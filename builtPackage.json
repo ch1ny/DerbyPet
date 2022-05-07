@@ -1,6 +1,6 @@
 {
 	"name": "derby-pet",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"main": "main.js",
 	"author": "德布罗煜",
 	"description": "一款基于electron的赛马娘桌宠",
