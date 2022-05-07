@@ -1,0 +1,14 @@
+@import '~antd/dist/antd.css';
+
+* {
+	margin: 0;
+	padding: 0;
+	user-select: none;
+}
+
+body {
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+	background-color: rgba($color: #000000, $alpha: 0);
+}

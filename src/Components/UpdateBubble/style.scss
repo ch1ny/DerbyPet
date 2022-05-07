@@ -1,0 +1,25 @@
+.updateBubbleContainer {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	width: 25vw;
+	min-height: 10vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: -1;
+
+	.updateBubble {
+		width: 95%;
+		height: 90%;
+		background-color: #fff;
+		border-radius: 10px;
+		border: 2px solid #dcdcdc;
+		box-shadow: 0px 0px 10px #eeeeee;
+		padding: 1rem;
+	}
+
+	&Hidden {
+		display: none;
+	}
+}
