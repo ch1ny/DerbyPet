@@ -10,7 +10,7 @@
 
 ## Installation
 
-[点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用。~~下载安装包安装完毕后即可使用。
+[点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
 
 > 2022 年 3 月 4 日更新日志：新增版本 v 1.1.0，大规模重构项目，为项目增添部分功能（仍不完善），并为后续项目远程更新留出接口。
 >
