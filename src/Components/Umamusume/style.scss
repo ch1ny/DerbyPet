@@ -50,23 +50,20 @@
 	}
 }
 
-.umamusumesCanChoose {
-	* {
-		max-height: 30vh;
-		overflow-y: auto;
+.umamusumesCanChoose ul {
+	max-height: 30vh;
+	overflow-y: auto;
 
-		&::-webkit-scrollbar {
-			width: 0.3rem; // 纵向滚动条宽度
-			height: 0.3rem; // 横向滚动条宽度
-		}
+	&::-webkit-scrollbar {
+		width: 0.3rem;
+	}
 
-		&::-webkit-scrollbar-thumb {
-			background-color: #a8a8a8;
-			border-radius: 0.3rem;
-		}
+	&::-webkit-scrollbar-thumb {
+		background-color: #a8a8a8;
+		border-radius: 0.3rem;
+	}
 
-		&::-webkit-scrollbar-track {
-			background-color: #eaeaea;
-		}
+	&::-webkit-scrollbar-track {
+		background-color: #eaeaea;
 	}
 }
