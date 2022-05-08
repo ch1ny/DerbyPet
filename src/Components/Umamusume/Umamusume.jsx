@@ -6,6 +6,8 @@ export default function Umamusume(props) {
 	const MY_UMA = localStorage.getItem('MY_UMA');
 	const [umaName, setUmaName] = useState(MY_UMA ? MY_UMA : '特别周');
 
+	const [showDropdown, setShowDropdown] = useState(false);
+
 	const [domAble, setDomAble] = useState(false);
 	const [isDragging, setIsDragging] = useState(false);
 	useEffect(() => {
@@ -18,6 +20,9 @@ export default function Umamusume(props) {
 				}
 			}
 		};
+		if (!domAble) {
+			setShowDropdown(false);
+		}
 		return () => {
 			document.onmousemove = null;
 		};
@@ -137,6 +142,7 @@ export default function Umamusume(props) {
 				localStorage.setItem('MY_UMA', e.key);
 				break;
 		}
+		setShowDropdown(false);
 	};
 
 	return (
@@ -145,7 +151,9 @@ export default function Umamusume(props) {
 				<Dropdown
 					overlay={<Menu onClick={menuFunc}>{menu}</Menu>}
 					trigger={['contextMenu']}
-					overlayClassName='desktopPetAbleDom'>
+					overlayClassName='desktopPetAbleDom'
+					visible={showDropdown}
+					onVisibleChange={setShowDropdown}>
 					<img
 						style={{
 							left: `${position[0]}px`,
