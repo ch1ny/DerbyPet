@@ -1,6 +1,6 @@
 import { message } from "antd";
 
-const vh = document.body.clientHeight / 100
+const vh = window.innerHeight / 100
 
 message.config({
     top: 10 * vh,
@@ -9,3 +9,4 @@ message.config({
 });
 
 export { message as globalMessage };
+
