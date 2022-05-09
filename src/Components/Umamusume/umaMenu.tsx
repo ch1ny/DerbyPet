@@ -1,9 +1,4 @@
-import {
-	CloudDownloadOutlined,
-	ImportOutlined,
-	PoweroffOutlined,
-	UserSwitchOutlined,
-} from '@ant-design/icons';
+import { CloudDownloadOutlined, ImportOutlined, PoweroffOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import React from 'react';
 
 export const umaMenu = [

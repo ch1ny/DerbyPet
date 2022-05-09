@@ -1,4 +1,4 @@
-export const umaNameToUmaCode = function (umaName) {
+export const umaNameToUmaCode = function (umaName: string) {
 	switch (umaName) {
 		case '特别周':
 		case '泳装特别周':

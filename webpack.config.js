@@ -9,7 +9,7 @@ module.exports = {
 		port: 3000,
 	},
 	resolve: {
-		extensions: ['.js', '.jsx', '.json'],
+		extensions: ['.js', '.jsx', '.json', '.ts', '.tsx'],
 		alias: {
 			Assets: path.join(__dirname, 'src/Assets'),
 			Components: path.join(__dirname, 'src/Components'),
@@ -19,7 +19,7 @@ module.exports = {
 		},
 	},
 	entry: {
-		main: './src/Views/Main/index.jsx',
+		main: './src/Views/Main/index.tsx',
 	},
 	output: {
 		path: path.resolve(__dirname, './build'),
@@ -51,6 +51,15 @@ module.exports = {
 						plugins: ['@babel/plugin-proposal-class-properties'],
 					},
 				},
+			},
+			{
+				test: /\.tsx?$/,
+				exclude: /(node_modules|bower_components)/,
+				use: [
+					{
+						loader: 'ts-loader',
+					},
+				],
 			},
 			{
 				test: /\.(png|jpg|gif|ico)$/,

@@ -1,17 +1,22 @@
 import { Progress, Typography } from 'antd';
 import axios from 'axios';
 import classNames from 'classnames';
-import { globalMessage } from 'Components/GlobalMessage/GlobalMessage';
 import React, { useEffect, useState } from 'react';
+import { globalMessage } from '../GlobalMessage/GlobalMessage';
 import './style.scss';
 
-export default function UpdateBubbles(props) {
+interface UpdateBubblesProps {
+	visible: boolean,
+	targetVersion: string
+}
+
+export default function UpdateBubbles(props: UpdateBubblesProps) {
 	const [total, setTotal] = useState(Infinity);
 	const [loaded, setLoaded] = useState(0);
-	const [targetVersion, setTargetVersion] = useState(undefined);
+	const [targetVersion, setTargetVersion] = useState('');
 
 	useEffect(() => {
-		if (props.targetVersion !== undefined) {
+		if (!props.targetVersion) {
 			setTargetVersion(props.targetVersion);
 		}
 	}, [props.targetVersion]);
@@ -36,9 +41,9 @@ export default function UpdateBubbles(props) {
 				.then((res) => {
 					const fr = new FileReader();
 					fr.onload = () => {
-						window.ipc.invoke('DOWNLOADED_UPDATE_ZIP', fr.result).then(() => {
+						(window as any).ipc.invoke('DOWNLOADED_UPDATE_ZIP', fr.result).then(() => {
 							setTimeout(() => {
-								window.ipc.send('READY_TO_UPDATE');
+								(window as any).ipc.send('READY_TO_UPDATE');
 							}, 750);
 						});
 					};
