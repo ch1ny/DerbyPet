@@ -1,9 +1,9 @@
 import { Modal } from 'antd';
 import axios from 'axios';
+import { globalMessage } from 'Components/GlobalMessage/GlobalMessage';
+import Umamusume from 'Components/Umamusume/Umamusume';
+import UpdateBubbles from 'Components/UpdateBubble/UpdateBubbles';
 import React, { useEffect, useState } from 'react';
-import { globalMessage } from '../../Components/GlobalMessage/GlobalMessage';
-import Umamusume from '../../Components/Umamusume/Umamusume';
-import UpdateBubbles from '../../Components/UpdateBubble/UpdateBubbles';
 import './App.scss';
 
 function needUpdate(nowVersion: string, targetVersion: string) {

@@ -1,14 +1,20 @@
 {
 	"compilerOptions": {
-		"outDir": "build",
-		"baseUrl": ".",
 		"target": "es2016",
 		"jsx": "react",
 		"module": "commonjs",
 		"esModuleInterop": true,
 		"forceConsistentCasingInFileNames": true,
 		"strict": true,
-		"skipLibCheck": true
+		"skipLibCheck": true,
+		"baseUrl": "./",
+		"paths": {
+			"Assets/*": ["src/Assets/*"],
+			"Components/*": ["src/Components/*"],
+			"Pages/*": ["src/Pages/*"],
+			"Utils/*": ["src/Utils/*"],
+			"Views/*": ["src/Views/*"]
+		}
 	},
 	"include": ["src/**/*"]
 }
