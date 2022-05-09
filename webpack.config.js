@@ -42,17 +42,6 @@ module.exports = {
 				],
 			},
 			{
-				test: /\.jsx?$/,
-				exclude: /(node_modules|bower_components)/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-react', '@babel/preset-env'],
-						plugins: ['@babel/plugin-proposal-class-properties'],
-					},
-				},
-			},
-			{
 				test: /\.tsx?$/,
 				exclude: /(node_modules|bower_components)/,
 				use: [
