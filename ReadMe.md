@@ -1,6 +1,6 @@
-# Umamusume Driver
+# Derby Pet
 
-## Introduction
+## 介绍
 
 一款为了能将 **ウマ娘　プリティーダービー** 加入 **Steam** 游玩而使用 **electron** 与 **React.js** 制作的一款赛马娘启动器。
 
@@ -8,7 +8,9 @@
 >
 > 而且还有很多站友希望我能分享给大家……
 
-## Installation
+## 安装
+
+### 方法一、使用exe安装程序（推荐）
 
 [点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
 
@@ -20,7 +22,37 @@
 >
 > 2022 年 5 月 9 日更新日志：版本号 v 2.1.0，项目重构，渲染进程使用 React + TypeScript 的开发方式。
 
-## Others
+### 方法二、自行编译
+
+> 仅推荐有相关知识储备的同学
+>
+> 默认看到这里的你已经安装了 nodejs(npm) 或 yarn
+
+进入项目根目录，打开终端，依次执行一下命令：
+
+#### 一、下载依赖
+
+```powershell
+# 如果您使用的是 npm
+npm install
+# 或者您使用的是 yarn
+yarn install
+```
+
+#### 二、编译代码
+
+```powershell
+# 如果您使用的是 npm
+npm dist
+# 或者您使用的是 yarn
+yarn dist
+```
+
+#### 三、运行程序
+
+编译结束后，进入项目根目录下的 `dist/DerbyPet-win32-x64` 文件夹中，双击 `DerbyPet.exe` 即可运行程序。
+
+## 其他
 
 ~~由于 **DMMPlayer 最新版本**（**5.0.0+**）进行了大规模更新（甚至更换了开发方式），已不支持通过 **URL Scheme** 启动游戏，因此该项目仅建议在低版本（低于 5.0 版本） DMMPlayer 上运行。~~
 
