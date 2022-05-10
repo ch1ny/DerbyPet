@@ -10,7 +10,7 @@
 
 ## 安装
 
-### 方法一、使用exe安装程序（推荐）
+### 方法一、使用 exe 安装程序（推荐）
 
 [点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
 
@@ -43,7 +43,7 @@ yarn install
 
 ```powershell
 # 如果您使用的是 npm
-npm dist
+npm run dist
 # 或者您使用的是 yarn
 yarn dist
 ```
