@@ -1,0 +1,704 @@
+{
+	"特别周": {
+		"key": "特别周",
+		"label": "特别周",
+		"pic": ["./Uma/pic/特别周0.png", "./Uma/pic/特别周1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SpecialWeek.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SpecialWeek.mp3"
+		}
+	},
+	"泳装特别周": {
+		"key": "泳装特别周",
+		"label": "泳装特别周",
+		"pic": ["./Uma/pic/泳装特别周0.png", "./Uma/pic/泳装特别周1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SpecialWeek.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SpecialWeek.mp3"
+		}
+	},
+	"无声铃鹿": {
+		"key": "无声铃鹿",
+		"label": "无声铃鹿",
+		"pic": ["./Uma/pic/无声铃鹿0.png", "./Uma/pic/无声铃鹿1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SilenceSuzuka.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SilenceSuzuka.mp3"
+		}
+	},
+	"东海帝王": {
+		"key": "东海帝王",
+		"label": "东海帝王",
+		"pic": ["./Uma/pic/东海帝王0.png", "./Uma/pic/东海帝王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/TokaiTeio.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/TokaiTeio.mp3"
+		}
+	},
+	"礼装东海帝王": {
+		"key": "礼装东海帝王",
+		"label": "礼装东海帝王",
+		"pic": ["./Uma/pic/礼装东海帝王0.png", "./Uma/pic/礼装东海帝王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/TokaiTeio.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/TokaiTeio.mp3"
+		}
+	},
+	"目白麦昆": {
+		"key": "目白麦昆",
+		"label": "目白麦昆",
+		"pic": ["./Uma/pic/目白麦昆0.png", "./Uma/pic/目白麦昆1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroMcQueen.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroMcQueen.mp3"
+		}
+	},
+	"礼装目白麦昆": {
+		"key": "礼装目白麦昆",
+		"label": "礼装目白麦昆",
+		"pic": ["./Uma/pic/礼装目白麦昆0.png", "./Uma/pic/礼装目白麦昆1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroMcQueen.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroMcQueen.mp3"
+		}
+	},
+	"鲁道夫象征": {
+		"key": "鲁道夫象征",
+		"label": "鲁道夫象征",
+		"pic": ["./Uma/pic/鲁道夫象征0.png", "./Uma/pic/鲁道夫象征1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SymboliRudolf.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SymboliRudolf.mp3"
+		}
+	},
+	"和服鲁道夫象征": {
+		"key": "和服鲁道夫象征",
+		"label": "和服鲁道夫象征",
+		"pic": ["./Uma/pic/和服鲁道夫象征0.png", "./Uma/pic/和服鲁道夫象征1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SymboliRudolf.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SymboliRudolf.mp3"
+		}
+	},
+	"丸善斯基": {
+		"key": "丸善斯基",
+		"label": "丸善斯基",
+		"pic": ["./Uma/pic/丸善斯基0.png", "./Uma/pic/丸善斯基1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MaruZensky.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MaruZensky.mp3"
+		}
+	},
+	"泳装丸善斯基": {
+		"key": "泳装丸善斯基",
+		"label": "泳装丸善斯基",
+		"pic": ["./Uma/pic/泳装丸善斯基0.png", "./Uma/pic/泳装丸善斯基1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MaruZensky.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MaruZensky.mp3"
+		}
+	},
+	"小栗帽": {
+		"key": "小栗帽",
+		"label": "小栗帽",
+		"pic": ["./Uma/pic/小栗帽0.png", "./Uma/pic/小栗帽1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/OguriCap.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/OguriCap.mp3"
+		}
+	},
+	"圣诞小栗帽": {
+		"key": "圣诞小栗帽",
+		"label": "圣诞小栗帽",
+		"pic": ["./Uma/pic/圣诞小栗帽0.png", "./Uma/pic/圣诞小栗帽1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/OguriCap.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/OguriCap.mp3"
+		}
+	},
+	"大树快车": {
+		"key": "大树快车",
+		"label": "大树快车",
+		"pic": ["./Uma/pic/大树快车0.png", "./Uma/pic/大树快车1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/TaikiShuttle.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/TaikiShuttle.mp3"
+		}
+	},
+	"米浴": {
+		"key": "米浴",
+		"label": "米浴",
+		"pic": ["./Uma/pic/米浴0.png", "./Uma/pic/米浴1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/RiceShower.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/RiceShower.mp3"
+		}
+	},
+	"万圣节米浴": {
+		"key": "万圣节米浴",
+		"label": "万圣节米浴",
+		"pic": ["./Uma/pic/万圣节米浴0.png", "./Uma/pic/万圣节米浴1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/RiceShower.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/RiceShower.mp3"
+		}
+	},
+	"竹正歌剧王": {
+		"key": "竹正歌剧王",
+		"label": "竹正歌剧王",
+		"pic": ["./Uma/pic/竹正歌剧王0.png", "./Uma/pic/竹正歌剧王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/T.M.OperaO.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/T.M.OperaO.mp3"
+		}
+	},
+	"春节竹正歌剧王": {
+		"key": "春节竹正歌剧王",
+		"label": "春节竹正歌剧王",
+		"pic": ["./Uma/pic/春节竹正歌剧王0.png", "./Uma/pic/春节竹正歌剧王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/T.M.OperaO.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/T.M.OperaO.mp3"
+		}
+	},
+	"美浦波旁": {
+		"key": "美浦波旁",
+		"label": "美浦波旁",
+		"pic": ["./Uma/pic/美浦波旁0.png", "./Uma/pic/美浦波旁1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MihonoBourbon.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MihonoBourbon.mp3"
+		}
+	},
+	"情人节美浦波旁": {
+		"key": "情人节美浦波旁",
+		"label": "情人节美浦波旁",
+		"pic": ["./Uma/pic/情人节美浦波旁0.png", "./Uma/pic/情人节美浦波旁1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MihonoBourbon.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MihonoBourbon.mp3"
+		}
+	},
+	"琵琶晨光": {
+		"key": "琵琶晨光",
+		"label": "琵琶晨光",
+		"pic": ["./Uma/pic/琵琶晨光0.png", "./Uma/pic/琵琶晨光1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/BiwaHayahide.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/BiwaHayahide.mp3"
+		}
+	},
+	"圣诞琵琶晨光": {
+		"key": "圣诞琵琶晨光",
+		"label": "圣诞琵琶晨光",
+		"pic": ["./Uma/pic/圣诞琵琶晨光0.png", "./Uma/pic/圣诞琵琶晨光1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/BiwaHayahide.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/BiwaHayahide.mp3"
+		}
+	},
+	"真机伶": {
+		"key": "真机伶",
+		"label": "真机伶",
+		"pic": ["./Uma/pic/真机伶0.png", "./Uma/pic/真机伶1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/CurrenChan.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/CurrenChan.mp3"
+		}
+	},
+	"成田大进": {
+		"key": "成田大进",
+		"label": "成田大进",
+		"pic": ["./Uma/pic/成田大进0.png", "./Uma/pic/成田大进1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/NaritaTaishin.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/NaritaTaishin.mp3"
+		}
+	},
+	"醒目飞鹰": {
+		"key": "醒目飞鹰",
+		"label": "醒目飞鹰",
+		"pic": ["./Uma/pic/醒目飞鹰0.png", "./Uma/pic/醒目飞鹰1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SmartFalcon.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SmartFalcon.mp3"
+		}
+	},
+	"成田白仁": {
+		"key": "成田白仁",
+		"label": "成田白仁",
+		"pic": ["./Uma/pic/成田白仁0.png", "./Uma/pic/成田白仁1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/NaritaBrian.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/NaritaBrian.mp3"
+		}
+	},
+	"空中欢歌": {
+		"key": "空中欢歌",
+		"label": "空中欢歌",
+		"pic": ["./Uma/pic/空中欢歌0.png", "./Uma/pic/空中欢歌1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/AirGroove.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/AirGroove.mp3"
+		}
+	},
+	"婚纱空中欢歌": {
+		"key": "婚纱空中欢歌",
+		"label": "婚纱空中欢歌",
+		"pic": ["./Uma/pic/婚纱空中欢歌0.png", "./Uma/pic/婚纱空中欢歌1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/AirGroove.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/AirGroove.mp3"
+		}
+	},
+	"摩耶重炮": {
+		"key": "摩耶重炮",
+		"label": "摩耶重炮",
+		"pic": ["./Uma/pic/摩耶重炮0.png", "./Uma/pic/摩耶重炮1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MayanoTopGun.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MayanoTopGun.mp3"
+		}
+	},
+	"婚纱摩耶重炮": {
+		"key": "婚纱摩耶重炮",
+		"label": "婚纱摩耶重炮",
+		"pic": ["./Uma/pic/婚纱摩耶重炮0.png", "./Uma/pic/婚纱摩耶重炮1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MayanoTopGun.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MayanoTopGun.mp3"
+		}
+	},
+	"星云天空": {
+		"key": "星云天空",
+		"label": "星云天空",
+		"pic": ["./Uma/pic/星云天空0.png", "./Uma/pic/星云天空1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SeiunSky.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SeiunSky.mp3"
+		}
+	},
+	"礼装星云天空": {
+		"key": "礼装星云天空",
+		"label": "礼装星云天空",
+		"pic": ["./Uma/pic/礼装星云天空0.png", "./Uma/pic/礼装星云天空1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SeiunSky.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/undefined.mp3"
+		}
+	},
+	"菱亚马逊": {
+		"key": "菱亚马逊",
+		"label": "菱亚马逊",
+		"pic": ["./Uma/pic/菱亚马逊0.png", "./Uma/pic/菱亚马逊1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/HishiAmazon.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/HishiAmazon.mp3"
+		}
+	},
+	"草上飞": {
+		"key": "草上飞",
+		"label": "草上飞",
+		"pic": ["./Uma/pic/草上飞0.png", "./Uma/pic/草上飞1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/GrassWonder.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/GrassWonder.mp3"
+		}
+	},
+	"治愈师草上飞": {
+		"key": "治愈师草上飞",
+		"label": "治愈师草上飞",
+		"pic": ["./Uma/pic/治愈师草上飞0.png", "./Uma/pic/治愈师草上飞1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/GrassWonder.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/GrassWonder.mp3"
+		}
+	},
+	"神鹰": {
+		"key": "神鹰",
+		"label": "神鹰",
+		"pic": ["./Uma/pic/神鹰0.png", "./Uma/pic/神鹰1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/ElCondorPasa.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/ElCondorPasa.mp3"
+		}
+	},
+	"格斗家神鹰": {
+		"key": "格斗家神鹰",
+		"label": "格斗家神鹰",
+		"pic": ["./Uma/pic/格斗家神鹰0.png", "./Uma/pic/格斗家神鹰1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/ElCondorPasa.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/ElCondorPasa.mp3"
+		}
+	},
+	"富士奇迹": {
+		"key": "富士奇迹",
+		"label": "富士奇迹",
+		"pic": ["./Uma/pic/富士奇迹0.png", "./Uma/pic/富士奇迹1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/FujiKiseki.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/FujiKiseki.mp3"
+		}
+	},
+	"礼装富士奇迹": {
+		"key": "礼装富士奇迹",
+		"label": "礼装富士奇迹",
+		"pic": ["./Uma/pic/礼装富士奇迹0.png", "./Uma/pic/礼装富士奇迹1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/FujiKiseki.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/FujiKiseki.mp3"
+		}
+	},
+	"黄金城市": {
+		"key": "黄金城市",
+		"label": "黄金城市",
+		"pic": ["./Uma/pic/黄金城市0.png", "./Uma/pic/黄金城市1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/GoldCity.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/GoldCity.mp3"
+		}
+	},
+	"和服黄金城市": {
+		"key": "和服黄金城市",
+		"label": "和服黄金城市",
+		"pic": ["./Uma/pic/和服黄金城市0.png", "./Uma/pic/和服黄金城市1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/GoldCity.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/GoldCity.mp3"
+		}
+	},
+	"名将怒涛": {
+		"key": "名将怒涛",
+		"label": "名将怒涛",
+		"pic": ["./Uma/pic/名将怒涛0.png", "./Uma/pic/名将怒涛1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MeishoDoto.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MeishoDoto.mp3"
+		}
+	},
+	"荣进闪耀": {
+		"key": "荣进闪耀",
+		"label": "荣进闪耀",
+		"pic": ["./Uma/pic/荣进闪耀0.png", "./Uma/pic/荣进闪耀1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/EishinFlash.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/EishinFlash.mp3"
+		}
+	},
+	"情人节荣进闪耀": {
+		"key": "情人节荣进闪耀",
+		"label": "情人节荣进闪耀",
+		"pic": ["./Uma/pic/情人节荣进闪耀0.png", "./Uma/pic/情人节荣进闪耀1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/EishinFlash.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/EishinFlash.mp3"
+		}
+	},
+	"待兼福来": {
+		"key": "待兼福来",
+		"label": "待兼福来",
+		"pic": ["./Uma/pic/待兼福来0.png", "./Uma/pic/待兼福来1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/Matikanefukukitaru.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/Matikanefukukitaru.mp3"
+		}
+	},
+	"礼装待兼福来": {
+		"key": "礼装待兼福来",
+		"label": "礼装待兼福来",
+		"pic": ["./Uma/pic/礼装待兼福来0.png", "./Uma/pic/礼装待兼福来1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/Matikanefukukitaru.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/Matikanefukukitaru.mp3"
+		}
+	},
+	"菱曙": {
+		"key": "菱曙",
+		"label": "菱曙",
+		"pic": ["./Uma/pic/菱曙0.png", "./Uma/pic/菱曙1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/HishiAkebono.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/HishiAkebono.mp3"
+		}
+	},
+	"爱丽数码": {
+		"key": "爱丽数码",
+		"label": "爱丽数码",
+		"pic": ["./Uma/pic/爱丽数码0.png", "./Uma/pic/爱丽数码1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/AgnesDigital.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/AgnesDigital.mp3"
+		}
+	},
+	"超级小海湾": {
+		"key": "超级小海湾",
+		"label": "超级小海湾",
+		"pic": ["./Uma/pic/超级小海湾0.png", "./Uma/pic/超级小海湾1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SuperCreek.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SuperCreek.mp3"
+		}
+	},
+	"万圣节超级小海湾": {
+		"key": "万圣节超级小海湾",
+		"label": "万圣节超级小海湾",
+		"pic": ["./Uma/pic/万圣节超级小海湾0.png", "./Uma/pic/万圣节超级小海湾1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SuperCreek.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SuperCreek.mp3"
+		}
+	},
+	"川上公主": {
+		"key": "川上公主",
+		"label": "川上公主",
+		"pic": ["./Uma/pic/川上公主0.png", "./Uma/pic/川上公主1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/KawakamiPrincess.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/KawakamiPrincess.mp3"
+		}
+	},
+	"曼城茶座": {
+		"key": "曼城茶座",
+		"label": "曼城茶座",
+		"pic": ["./Uma/pic/曼城茶座0.png", "./Uma/pic/曼城茶座1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/ManhattanCafe.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/ManhattanCafe.mp3"
+		}
+	},
+	"东瀛佐敦": {
+		"key": "东瀛佐敦",
+		"label": "东瀛佐敦",
+		"pic": ["./Uma/pic/东瀛佐敦0.png", "./Uma/pic/东瀛佐敦1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/TosenJordan.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/TosenJordan.mp3"
+		}
+	},
+	"目白多伯": {
+		"key": "目白多伯",
+		"label": "目白多伯",
+		"pic": ["./Uma/pic/目白多伯0.png", "./Uma/pic/目白多伯1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroDober.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroDober.mp3"
+		}
+	},
+	"美妙姿势": {
+		"key": "美妙姿势",
+		"label": "美妙姿势",
+		"pic": ["./Uma/pic/美妙姿势0.png", "./Uma/pic/美妙姿势1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/FineMotion.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/FineMotion.mp3"
+		}
+	},
+	"玉藻十字": {
+		"key": "玉藻十字",
+		"label": "玉藻十字",
+		"pic": ["./Uma/pic/玉藻十字0.png", "./Uma/pic/玉藻十字1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/TamamoCross.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/TamamoCross.mp3"
+		}
+	},
+	"春乌拉拉": {
+		"key": "春乌拉拉",
+		"label": "春乌拉拉",
+		"pic": ["./Uma/pic/春乌拉拉0.png", "./Uma/pic/春乌拉拉1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/HaruUrara.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/HaruUrara.mp3"
+		}
+	},
+	"春节春乌拉拉": {
+		"key": "春节春乌拉拉",
+		"label": "春节春乌拉拉",
+		"pic": ["./Uma/pic/春节春乌拉拉0.png", "./Uma/pic/春节春乌拉拉1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/HaruUrara.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/HaruUrara.mp3"
+		}
+	},
+	"樱花千代王": {
+		"key": "樱花千代王",
+		"label": "樱花千代王",
+		"pic": ["./Uma/pic/樱花千代王0.png", "./Uma/pic/樱花千代王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SakuraChiyonoO.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SakuraChiyonoO.mp3"
+		}
+	},
+	"目白阿尔丹": {
+		"key": "目白阿尔丹",
+		"label": "目白阿尔丹",
+		"pic": ["./Uma/pic/目白阿尔丹0.png", "./Uma/pic/目白阿尔丹1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroArdan.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroArdan.mp3"
+		}
+	},
+	"爱慕织姬": {
+		"key": "爱慕织姬",
+		"label": "爱慕织姬",
+		"pic": ["./Uma/pic/爱慕织姬0.png", "./Uma/pic/爱慕织姬1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/AdmireVega.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/AdmireVega.mp3"
+		}
+	},
+	"北部玄驹": {
+		"key": "北部玄驹",
+		"label": "北部玄驹",
+		"pic": ["./Uma/pic/北部玄驹0.png", "./Uma/pic/北部玄驹1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/KitasanBlack.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/KitasanBlack.mp3"
+		}
+	},
+	"里见光钻": {
+		"key": "里见光钻",
+		"label": "里见光钻",
+		"pic": ["./Uma/pic/里见光钻0.png", "./Uma/pic/里见光钻1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SatonoDiamond.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SatonoDiamond.mp3"
+		}
+	},
+	"目白光明": {
+		"key": "目白光明",
+		"label": "目白光明",
+		"pic": ["./Uma/pic/目白光明0.png", "./Uma/pic/目白光明1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroBright.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroBright.mp3"
+		}
+	},
+	"西野花": {
+		"key": "西野花",
+		"label": "西野花",
+		"pic": ["./Uma/pic/西野花0.png", "./Uma/pic/西野花1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/NishinoFlower.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/NishinoFlower.mp3"
+		}
+	},
+	"八重无敌": {
+		"key": "八重无敌",
+		"label": "八重无敌",
+		"pic": ["./Uma/pic/八重无敌0.png", "./Uma/pic/八重无敌1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/YaenoMuteki.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/YaenoMuteki.mp3"
+		}
+	},
+	"大和赤骥": {
+		"key": "大和赤骥",
+		"label": "大和赤骥",
+		"pic": ["./Uma/pic/大和赤骥0.png", "./Uma/pic/大和赤骥1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/DaiwaScarlet.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/DaiwaScarlet.mp3"
+		}
+	},
+	"黄金船": {
+		"key": "黄金船",
+		"label": "黄金船",
+		"pic": ["./Uma/pic/黄金船0.png", "./Uma/pic/黄金船1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/GoldShip.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/GoldShip.mp3"
+		}
+	},
+	"伏特加": {
+		"key": "伏特加",
+		"label": "伏特加",
+		"pic": ["./Uma/pic/伏特加0.png", "./Uma/pic/伏特加1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/Vodka.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/Vodka.mp3"
+		}
+	},
+	"待兼诗歌剧": {
+		"key": "待兼诗歌剧",
+		"label": "待兼诗歌剧",
+		"pic": ["./Uma/pic/待兼诗歌剧0.png", "./Uma/pic/待兼诗歌剧1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/Matikanetannhauser.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/Matikanetannhauser.mp3"
+		}
+	},
+	"目白赖恩": {
+		"key": "目白赖恩",
+		"label": "目白赖恩",
+		"pic": ["./Uma/pic/目白赖恩0.png", "./Uma/pic/目白赖恩1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/MejiroRyan.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/MejiroRyan.mp3"
+		}
+	},
+	"胜利奖券": {
+		"key": "胜利奖券",
+		"label": "胜利奖券",
+		"pic": ["./Uma/pic/胜利奖券0.png", "./Uma/pic/胜利奖券1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/WinningTicket.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/WinningTicket.mp3"
+		}
+	},
+	"爱丽速子": {
+		"key": "爱丽速子",
+		"label": "爱丽速子",
+		"pic": ["./Uma/pic/爱丽速子0.png", "./Uma/pic/爱丽速子1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/AgnesTachyon.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/AgnesTachyon.mp3"
+		}
+	},
+	"樱花进王": {
+		"key": "樱花进王",
+		"label": "樱花进王",
+		"pic": ["./Uma/pic/樱花进王0.png", "./Uma/pic/樱花进王1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/SakuraBakushinO.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/SakuraBakushinO.mp3"
+		}
+	},
+	"优秀素质": {
+		"key": "优秀素质",
+		"label": "优秀素质",
+		"pic": ["./Uma/pic/优秀素质0.png", "./Uma/pic/优秀素质1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/NiceNature.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/NiceNature.mp3"
+		}
+	},
+	"啦啦队优秀素质": {
+		"key": "啦啦队优秀素质",
+		"label": "啦啦队优秀素质",
+		"pic": ["./Uma/pic/啦啦队优秀素质0.png", "./Uma/pic/啦啦队优秀素质1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/NiceNature.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/NiceNature.mp3"
+		}
+	},
+	"帝王光辉": {
+		"key": "帝王光辉",
+		"label": "帝王光辉",
+		"pic": ["./Uma/pic/帝王光辉0.png", "./Uma/pic/帝王光辉1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/KingHalo.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/KingHalo.mp3"
+		}
+	},
+	"应援团帝王光辉": {
+		"key": "应援团帝王光辉",
+		"label": "应援团帝王光辉",
+		"pic": ["./Uma/pic/应援团帝王光辉0.png", "./Uma/pic/应援团帝王光辉1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/KingHalo.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/KingHalo.mp3"
+		}
+	}
+}

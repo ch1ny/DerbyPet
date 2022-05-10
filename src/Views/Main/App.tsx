@@ -1,25 +1,12 @@
 import { Modal } from 'antd';
 import axios from 'axios';
 import { globalMessage } from 'Components/GlobalMessage/GlobalMessage';
+import Settings from 'Components/Settings/Settings';
 import Umamusume from 'Components/Umamusume/Umamusume';
 import UpdateBubbles from 'Components/UpdateBubble/UpdateBubbles';
 import React, { useEffect, useState } from 'react';
+import { needUpdate } from 'Utils/Global';
 import './App.scss';
-
-function needUpdate(nowVersion: string, targetVersion: string) {
-    const nowArr = nowVersion.split('.').map((i) => Number(i));
-    const newArr = targetVersion.split('.').map((i) => Number(i));
-    const lessLength = Math.min(nowArr.length, newArr.length);
-    for (let i = 0; i < lessLength; i++) {
-        if (nowArr[i] < newArr[i]) {
-            return true;
-        } else if (nowArr[i] > newArr[i]) {
-            return false;
-        }
-    }
-    if (nowArr.length < newArr.length) return true;
-    return false;
-}
 
 export default function App() {
     const [appVersion, setAppVersion] = useState('');
@@ -29,6 +16,8 @@ export default function App() {
             setAppVersion(version);
         });
     }, []);
+
+    const [showSettings, setShowSettings] = useState(false)
 
     const [updating, setUpdating] = useState(false);
 
@@ -47,6 +36,14 @@ export default function App() {
                             if (needUpdate(appVersion, latest)) setLatestVersion(latest);
                             else globalMessage.success({ content: '当前已是最新版本，无需更新' });
                         });
+                }}
+                showSetting={() => { setShowSettings(true) }}
+            />
+
+            <Settings
+                visible={showSettings}
+                closeFunc={() => {
+                    setShowSettings(false)
                 }}
             />
 

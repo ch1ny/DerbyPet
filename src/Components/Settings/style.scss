@@ -1,0 +1,35 @@
+.settingsModalWrap {
+	&::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+}
+
+.settingContainer {
+	width: 100%;
+	height: 50vh;
+	display: flex;
+}
+
+.anchorContainer {
+	width: 23%;
+	height: 100%;
+	border-right: 0.05rem solid #eaeaea;
+}
+
+.settings {
+	width: calc(77% - 0.05rem);
+	height: 100%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 1rem;
+}
+
+.settings::-webkit-scrollbar {
+	width: 0.25rem;
+}
+
+.settings::-webkit-scrollbar-thumb {
+	background-color: #a8a8a8;
+	border-radius: 0.1rem;
+}

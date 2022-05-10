@@ -1,16 +1,37 @@
 import { Dropdown, Menu } from 'antd';
+import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
+import { setUmaMusume } from 'Utils/Store/actions';
+import store from 'Utils/Store/store';
 import './style.scss';
+import * as umas from './Uma/umas.json';
 import { umaMenu } from './umaMenu';
-import { umaNameToUmaCode } from './umaNameToUmaCode';
 
 interface UmamusumeProps {
-	checkForUpdate: Function
+	checkForUpdate: Function;
+	showSetting: Function;
 }
+const translateRegex = new RegExp(/.*?translate\((\d{1,})px, (\d{1,})px\).*?/)
 
 export default function Umamusume(props: UmamusumeProps) {
-	const MY_UMA = localStorage.getItem('MY_UMA');
-	const [umaName, setUmaName] = useState(MY_UMA ? MY_UMA : '特别周');
+	const [umaName, setUmaName] = useState('特别周');
+	useEffect(() => {
+		const unsubscribe = store.subscribe(() => {
+			setUmaName(store.getState().umaMusume);
+		});
+		const MY_UMA = localStorage.getItem('MY_UMA');
+		if (MY_UMA) {
+			store.dispatch(setUmaMusume(MY_UMA));
+		}
+		return unsubscribe;
+	}, []);
+	useEffect(() => {
+		localStorage.setItem('MY_UMA', umaName);
+		if (audioRef.current) {
+			audioRef.current.load();
+		}
+		setUmaClicked(false);
+	}, [umaName]);
 
 	const [showDropdown, setShowDropdown] = useState(false);
 
@@ -19,7 +40,7 @@ export default function Umamusume(props: UmamusumeProps) {
 	useEffect(() => {
 		document.onmousemove = (evt) => {
 			if (!isDragging) {
-				const flag = evt.composedPath().length > 4;
+				const flag = evt.composedPath().length > 7;
 				if (flag !== domAble) {
 					(window as any).ipc.send('EXCHANGE_DOM_ABLE', flag);
 					setDomAble(flag);
@@ -60,8 +81,11 @@ export default function Umamusume(props: UmamusumeProps) {
 					distinguishDragClickTimeout = null;
 				}, 150);
 				// 获取元素起始位置
-				const initialX = desktopPet.offsetLeft;
-				const initialY = desktopPet.offsetTop;
+				const transform = desktopPet.style.transform
+				const translate = translateRegex.exec(transform)
+				if (!translate) return
+				const initialX = Number(translate[1]);
+				const initialY = Number(translate[2]);
 				// 鼠标按下的坐标
 				const startX = evt.clientX;
 				const startY = evt.clientY;
@@ -70,14 +94,19 @@ export default function Umamusume(props: UmamusumeProps) {
 					// 元素最终的位置
 					let finalX = initialX + (evt.clientX - startX);
 					let finalY = initialY + (evt.clientY - startY);
-
 					// 边界越界及吸附判断
-					if (finalX > document.documentElement.clientWidth - desktopPet.offsetWidth - 20) {
+					if (
+						finalX >
+						document.documentElement.clientWidth - desktopPet.offsetWidth - 20
+					) {
 						finalX = document.documentElement.clientWidth - desktopPet.offsetWidth;
 					} else if (finalX < 20) {
 						finalX = 0;
 					}
-					if (finalY > document.documentElement.clientHeight - desktopPet.offsetHeight - 20) {
+					if (
+						finalY >
+						document.documentElement.clientHeight - desktopPet.offsetHeight - 20
+					) {
 						finalY = document.documentElement.clientHeight - desktopPet.offsetHeight;
 					} else if (finalY < 20) {
 						finalY = 0;
@@ -97,10 +126,13 @@ export default function Umamusume(props: UmamusumeProps) {
 						}
 					} else {
 						setIsDragging(false);
-						localStorage.setItem(
-							'PET_OFFSET',
-							JSON.stringify([desktopPet.offsetLeft, desktopPet.offsetTop])
-						);
+						const transform = desktopPet.style.transform;
+						const translate = translateRegex.exec(transform);
+						if (translate)
+							localStorage.setItem(
+								'PET_OFFSET',
+								JSON.stringify([translate[1], translate[2]])
+							);
 					}
 					desktopPet.onmousemove = null;
 					desktopPet.onmouseleave = null;
@@ -117,7 +149,6 @@ export default function Umamusume(props: UmamusumeProps) {
 						}
 					} else {
 						setIsDragging(false);
-						(window as any).ipc.send('DRAG_RELEASE', [desktopPet.offsetLeft, desktopPet.offsetTop]);
 					}
 					desktopPet.onmousemove = null;
 					desktopPet.onmouseup = null;
@@ -131,9 +162,8 @@ export default function Umamusume(props: UmamusumeProps) {
 		switch (evt.key) {
 			case 'START_GAME':
 				if (audioRef.current) {
-					audioRef.current.src = `https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/${umaNameToUmaCode(
-						umaName
-					)}.mp3`;
+					audioRef.current.src =
+						umas[`${umaName}` as keyof typeof umas]['audio']['start'];
 					audioRef.current.load();
 					(window as any).ipc.send('START_GAME');
 					audioRef.current.play();
@@ -145,13 +175,13 @@ export default function Umamusume(props: UmamusumeProps) {
 			case 'CHECK_FOR_UPDATE':
 				props.checkForUpdate();
 				break;
+			case 'SETTINGS':
+				props.showSetting();
+				break;
 			default:
-				if (audioRef.current) {
-					setUmaName(evt.key);
-					audioRef.current.load();
-					setUmaClicked(false);
-					localStorage.setItem('MY_UMA', evt.key);
-				}
+				store.dispatch(setUmaMusume(
+					Object.prototype.hasOwnProperty.call(umas, evt.key) ? evt.key : '特别周'
+				))
 				break;
 		}
 		setShowDropdown(false);
@@ -163,41 +193,52 @@ export default function Umamusume(props: UmamusumeProps) {
 				<Dropdown
 					overlay={<Menu onClick={menuFunc} items={umaMenu} />}
 					trigger={['contextMenu']}
-					overlayClassName='desktopPetAbleDom'
 					visible={showDropdown}
 					onVisibleChange={setShowDropdown}>
-					<img
+					<div
+						className='desktopContainer'
 						style={{
-							left: `${position[0]}px`,
-							top: `${position[1]}px`,
+							transform: `translate(${position[0]}px, ${position[1]}px)`
 						}}
-						ref={desktopPetRef}
-						src={
-							umaClicked
-								? require(`./Uma/${umaName}1.png`)
-								: require(`./Uma/${umaName}0.png`)
-						}
-						className='uma desktopPetAbleDom'
-					/>
+						ref={desktopPetRef}>
+						<img
+							src={require(`./Uma/pic/${umaName}0.png`)}
+							className={classNames({
+								uma: true,
+								'uma-hidden': umaClicked,
+							})}
+						/>
+						<img
+							src={require(`./Uma/pic/${umaName}1.png`)}
+							className={classNames({
+								uma: true,
+								'uma-hidden': !umaClicked,
+							})}
+						/>
+					</div>
 				</Dropdown>
 				<audio
 					ref={audioRef}
 					preload='true'
-					src={`https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/${umaNameToUmaCode(
-						umaName
-					)}.mp3`}
+					src={umas[`${umaName}` as keyof typeof umas]['audio']['click']}
 					onPlay={() => {
 						if (desktopPetRef.current) {
-							desktopPetRef.current.classList.remove('uma-rotateOut');
-							desktopPetRef.current.classList.add('uma-rotateOut');
+							desktopPetRef.current.classList.remove('desktopContainer-rotateOut');
+							desktopPetRef.current.classList.add('desktopContainer-rotateOut');
 							setTimeout(() => {
 								if (desktopPetRef.current) {
-									desktopPetRef.current.classList.remove('uma-rotateOut');
-									desktopPetRef.current.classList.add('uma-rotateIn');
+									desktopPetRef.current.classList.remove(
+										'desktopContainer-rotateOut'
+									);
+									desktopPetRef.current.classList.add(
+										'desktopContainer-rotateIn'
+									);
 									setUmaClicked(true);
 									setTimeout(() => {
 										if (desktopPetRef.current)
-											desktopPetRef.current.classList.remove('uma-rotateIn');
+											desktopPetRef.current.classList.remove(
+												'desktopContainer-rotateIn'
+											);
 									}, 200);
 								}
 							}, 200);
@@ -205,18 +246,23 @@ export default function Umamusume(props: UmamusumeProps) {
 					}}
 					onEnded={() => {
 						if (audioRef.current && desktopPetRef.current) {
-							audioRef.current.src = `https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/${umaNameToUmaCode(
-								umaName
-							)}.mp3`;
-							desktopPetRef.current.classList.add('uma-rotateOut');
+							audioRef.current.src =
+								umas[`${umaName}` as keyof typeof umas]['audio']['click'];
+							desktopPetRef.current.classList.add('desktopContainer-rotateOut');
 							setTimeout(() => {
 								if (desktopPetRef.current) {
-									desktopPetRef.current.classList.remove('uma-rotateOut');
-									desktopPetRef.current.classList.add('uma-rotateIn');
+									desktopPetRef.current.classList.remove(
+										'desktopContainer-rotateOut'
+									);
+									desktopPetRef.current.classList.add(
+										'desktopContainer-rotateIn'
+									);
 									setUmaClicked(false);
 									setTimeout(() => {
 										if (desktopPetRef.current)
-											desktopPetRef.current.classList.remove('uma-rotateIn');
+											desktopPetRef.current.classList.remove(
+												'desktopContainer-rotateIn'
+											);
 									}, 200);
 								}
 							}, 200);

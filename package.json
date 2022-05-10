@@ -7,8 +7,8 @@
 	"license": "MIT",
 	"private": true,
 	"devDependencies": {
-		"@types/react": "^18.0.9",
-		"@types/react-dom": "^18.0.3",
+		"@types/react": "17",
+		"@types/react-dom": "17",
 		"clean-webpack-plugin": "^4.0.0",
 		"css-loader": "^6.7.1",
 		"electron": "^18.2.0",
@@ -28,13 +28,14 @@
 	},
 	"dependencies": {
 		"@ant-design/icons": "^4.7.0",
-		"antd": "^4.20.2",
+		"@reduxjs/toolkit": "^1.8.1",
+		"antd": "^4.20.3",
 		"axios": "^0.27.2",
 		"classnames": "^2.3.1",
 		"fs-extra": "^10.1.0",
 		"react": "17",
 		"react-dom": "17",
-		"redux": "^4.2.0"
+		"react-draggable": "^4.4.5"
 	},
 	"scripts": {
 		"start": "webpack serve --mode development --env development",
