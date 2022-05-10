@@ -120,7 +120,7 @@ function createMainWindow() {
 	});
 
 	ipc.on('RELEASE_MOUSE', () => {
-		mainWindow.show();
+		mainWindow.showInactive();
 		mainWindow.moveTop();
 	});
 

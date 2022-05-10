@@ -47,7 +47,7 @@ export default function Umamusume(props: UmamusumeProps) {
 	useEffect(() => {
 		document.onmousemove = (evt) => {
 			if (!isDragging) {
-				const flag = evt.composedPath().length > 7;
+				const flag = evt.composedPath().length > (props.settingVisible ? 7 : 6);
 				if (flag !== domAble) {
 					(window as any).ipc.send('EXCHANGE_DOM_ABLE', flag);
 					setDomAble(flag);
@@ -60,7 +60,7 @@ export default function Umamusume(props: UmamusumeProps) {
 		return () => {
 			document.onmousemove = null;
 		};
-	}, [domAble]);
+	}, [domAble, props.settingVisible]);
 
 	const [position, setPosition] = useState([0, 0]);
 	useEffect(() => {
