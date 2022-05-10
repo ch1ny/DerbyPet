@@ -593,6 +593,15 @@
 			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/YaenoMuteki.mp3"
 		}
 	},
+	"艾尼斯风神": {
+		"key": "艾尼斯风神",
+		"label": "艾尼斯风神",
+		"pic": ["./Uma/pic/艾尼斯风神0.png", "./Uma/pic/艾尼斯风神1.png"],
+		"audio": {
+			"click": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/InesFujin.mp3",
+			"start": "https://cdn.jsdelivr.net/gh/AioliaRegulus/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/InesFujin.mp3"
+		}
+	},
 	"大和赤骥": {
 		"key": "大和赤骥",
 		"label": "大和赤骥",
