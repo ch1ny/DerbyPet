@@ -9,15 +9,22 @@ import { umaMenu } from './umaMenu';
 
 interface UmamusumeProps {
 	checkForUpdate: Function;
+	settingVisible: boolean;
 	showSetting: Function;
 }
 const translateRegex = new RegExp(/.*?translate\((\d{1,})px, (\d{1,})px\).*?/)
 
 export default function Umamusume(props: UmamusumeProps) {
-	const [umaName, setUmaName] = useState('特别周');
+	const reduxState = store.getState()
+	const [umaName, setUmaName] = useState(reduxState.umaMusume);
+	const [needOpacity, setNeedOpacity] = useState(reduxState.needOpacity)
+	const [umaOpacity, setUmaOpacity] = useState(reduxState.umaOpacity)
 	useEffect(() => {
 		const unsubscribe = store.subscribe(() => {
-			setUmaName(store.getState().umaMusume);
+			const { umaMusume, needOpacity, umaOpacity } = store.getState()
+			setUmaName(umaMusume);
+			setNeedOpacity(needOpacity)
+			setUmaOpacity(umaOpacity)
 		});
 		const MY_UMA = localStorage.getItem('MY_UMA');
 		if (MY_UMA) {
@@ -187,34 +194,40 @@ export default function Umamusume(props: UmamusumeProps) {
 		setShowDropdown(false);
 	};
 
+	const dropdownRef = useRef<HTMLDivElement | null>(null)
+
 	return (
 		<>
-			<div className='desktopPet'>
+			<div className='desktopPet' ref={dropdownRef}>
 				<Dropdown
-					overlay={<Menu onClick={menuFunc} items={umaMenu} />}
+					overlay={<Menu className='contextMenu' onClick={menuFunc} items={umaMenu} />}
 					trigger={['contextMenu']}
 					visible={showDropdown}
-					onVisibleChange={setShowDropdown}>
+					onVisibleChange={setShowDropdown}
+					getPopupContainer={() => (dropdownRef.current ? dropdownRef.current : document.body)}
+				>
 					<div
 						className='desktopContainer'
 						style={{
 							transform: `translate(${position[0]}px, ${position[1]}px)`
 						}}
 						ref={desktopPetRef}>
-						<img
-							src={require(`./Uma/pic/${umaName}0.png`)}
-							className={classNames({
-								uma: true,
-								'uma-hidden': umaClicked,
-							})}
-						/>
-						<img
-							src={require(`./Uma/pic/${umaName}1.png`)}
-							className={classNames({
-								uma: true,
-								'uma-hidden': !umaClicked,
-							})}
-						/>
+						<div style={{ opacity: needOpacity && (props.settingVisible || !domAble) ? umaOpacity : 1 }}>
+							<img
+								src={require(`./Uma/pic/${umaName}0.png`)}
+								className={classNames({
+									uma: true,
+									'uma-hidden': umaClicked,
+								})}
+							/>
+							<img
+								src={require(`./Uma/pic/${umaName}1.png`)}
+								className={classNames({
+									uma: true,
+									'uma-hidden': !umaClicked,
+								})}
+							/>
+						</div>
 					</div>
 				</Dropdown>
 				<audio

@@ -163,6 +163,11 @@ else {
 		ipc.on('START_GAME', () => {
 			shell.openExternal('dmmgameplayer://umamusume/cl/general/umamusume');
 		});
+
+		if (process.env.NODE_ENV === 'development')
+			ipc.on('DEBUG_INFO', (evt, info) => {
+				console.log(info);
+			});
 	});
 
 	app.on('window-all-closed', () => {

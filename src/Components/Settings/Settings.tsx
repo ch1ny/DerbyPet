@@ -3,6 +3,7 @@ import { Anchor, Divider, Modal } from "antd";
 import React, { useRef, useState } from "react";
 import Draggable from "react-draggable";
 import About from "./About/About";
+import Appearance from "./Appearance/Appearance";
 import './style.scss';
 
 interface SettingsProps {
@@ -66,11 +67,19 @@ export default function Settings(props: SettingsProps) {
                         <Anchor
                             getContainer={() => (anchorRef.current ? anchorRef.current : window)}
                         >
+                            <Anchor.Link href='#appearance' title='外观设置' />
                             <Anchor.Link href='#umamusumes' title='赛马娘配置' />
                             <Anchor.Link href='#about' title='关于' />
                         </Anchor>
                     </div>
                     <div className="settings" ref={anchorRef}>
+                        <div>
+                            <h2 id='appearance'>外观设置</h2>
+                            <Appearance />
+                        </div>
+                        <Divider>
+                            <SettingFilled />
+                        </Divider>
                         <div>
                             <h2 id='umamusumes'>赛马娘配置</h2>
                         </div>

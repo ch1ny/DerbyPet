@@ -37,6 +37,7 @@ export default function App() {
                             else globalMessage.success({ content: '当前已是最新版本，无需更新' });
                         });
                 }}
+                settingVisible={showSettings}
                 showSetting={() => { setShowSettings(true) }}
             />
 
