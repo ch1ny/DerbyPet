@@ -1,13 +1,4 @@
-const {
-	app,
-	BrowserWindow,
-	Tray,
-	Menu,
-	screen,
-	nativeImage,
-	globalShortcut,
-	shell,
-} = require('electron');
+const { app, BrowserWindow, Tray, Menu, screen, nativeImage, shell } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs-extra');
@@ -19,6 +10,30 @@ const DIRNAME = process.env.NODE_ENV === 'development' ? path.join(__dirname, 'p
 const EXEPATH = path.dirname(app.getPath('exe'));
 
 let tray = null;
+const mainWindowIcon = nativeImage
+	.createFromPath(path.join(DIRNAME, 'electronAssets/trayIcon/showWindow.png'))
+	.resize({
+		width: 16,
+		height: 16,
+		quality: 'best',
+	});
+const closeMainWindowContext = {
+	label: '关闭渲染进程',
+	click: () => {
+		if (mainWindow) mainWindow.close();
+	},
+	icon: mainWindowIcon,
+};
+const openMainWindowContext = {
+	label: '开启渲染进程',
+	click: () => {
+		if (mainWindow) {
+			mainWindow.restore();
+			mainWindow.moveTop();
+		} else createMainWindow();
+	},
+	icon: mainWindowIcon,
+};
 
 function createMainWindow() {
 	mainWindow = new BrowserWindow({
@@ -34,6 +49,7 @@ function createMainWindow() {
 		focusable: false,
 		webPreferences: {
 			preload: path.join(DIRNAME, 'electronAssets', 'preload.js'),
+			devTools: process.env.NODE_ENV === 'development',
 		},
 	});
 
@@ -50,20 +66,7 @@ function createMainWindow() {
 	}
 
 	const contextMenu = Menu.buildFromTemplate([
-		{
-			label: '打开主面板',
-			click: () => {
-				if (mainWindow) mainWindow.show();
-				else createMainWindow();
-			},
-			icon: nativeImage
-				.createFromPath(path.join(DIRNAME, 'electronAssets/trayIcon/showWindow.png'))
-				.resize({
-					width: 16,
-					height: 16,
-					quality: 'best',
-				}),
-		},
+		closeMainWindowContext,
 		{
 			type: 'separator',
 		},
@@ -82,19 +85,17 @@ function createMainWindow() {
 		},
 	]);
 
-	tray = new Tray(path.join(DIRNAME, 'electronAssets', 'favicon.ico'));
-	tray.setToolTip(`ウマ娘 Pretty Derby\n(¯﹃¯)\n德比桌宠`);
+	if (!tray) {
+		tray = new Tray(path.join(DIRNAME, 'electronAssets', 'favicon.ico'));
+		tray.setToolTip(`ウマ娘 Pretty Derby\n(¯﹃¯)\n德比桌宠`);
+		tray.on('click', () => {
+			if (mainWindow) {
+				mainWindow.restore();
+				mainWindow.moveTop();
+			} else createMainWindow();
+		});
+	}
 	tray.setContextMenu(contextMenu);
-	tray.on('click', () => {
-		if (mainWindow) {
-			mainWindow.restore();
-			mainWindow.moveTop();
-		} else createMainWindow();
-	});
-
-	mainWindow.once('closed', () => {
-		mainWindow = null;
-	});
 
 	mainWindow.once('ready-to-show', () => {
 		mainWindow.show();
@@ -104,12 +105,7 @@ function createMainWindow() {
 		// if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 	});
 
-	mainWindow.on('minimize', () => {
-		mainWindow.restore();
-		mainWindow.moveTop();
-	});
-
-	ipc.on('EXCHANGE_DOM_ABLE', (event, able) => {
+	const exchangeDomAble = (event, able) => {
 		if (able) {
 			mainWindow.setIgnoreMouseEvents(!able);
 		} else {
@@ -117,16 +113,41 @@ function createMainWindow() {
 				forward: true,
 			});
 		}
-	});
+	};
+	ipc.on('EXCHANGE_DOM_ABLE', exchangeDomAble);
 
-	ipc.on('RELEASE_MOUSE', () => {
-		mainWindow.showInactive();
-		mainWindow.moveTop();
-	});
+	// ipc.on('RELEASE_MOUSE', () => {
+	// 	mainWindow.showInactive();
+	// 	mainWindow.moveTop();
+	// });
 
-	ipc.handle('APP_VERSION', () => {
-		const version = app.getVersion();
-		return version;
+	ipc.handle('APP_VERSION', app.getVersion);
+
+	mainWindow.once('closed', () => {
+		ipc.removeListener('EXCHANGE_DOM_ABLE', exchangeDomAble);
+		ipc.removeHandler('APP_VERSION');
+		mainWindow = null;
+		tray.setContextMenu(
+			Menu.buildFromTemplate([
+				openMainWindowContext,
+				{
+					type: 'separator',
+				},
+				{
+					label: '退出',
+					click: () => {
+						app.quit();
+					},
+					icon: nativeImage
+						.createFromPath(path.join(DIRNAME, 'electronAssets/trayIcon/quit.png'))
+						.resize({
+							width: 16,
+							height: 16,
+							quality: 'best',
+						}),
+				},
+			])
+		);
 	});
 }
 
@@ -140,11 +161,6 @@ else {
 	});
 
 	app.on('ready', () => {
-		if (process.env.NODE_ENV !== 'development')
-			globalShortcut.register('CommandOrControl+Shift+I', () => {
-				console.log('你想打开开发者工具？あげません！');
-			});
-
 		createMainWindow();
 
 		ipc.once('QUIT', () => {
@@ -152,7 +168,19 @@ else {
 		});
 
 		ipc.once('READY_TO_UPDATE', () => {
-			if (process.env.NODE_ENV !== 'development') readyToUpdate();
+			if (process.env.NODE_ENV === 'development') return;
+			const { spawn } = require('child_process');
+			const child = spawn(
+				path.join(EXEPATH, 'resources', 'ReadyUpdater.exe'),
+				['YES_I_WANNA_UPDATE_ASAR'],
+				{
+					detached: true,
+					shell: true,
+				}
+			);
+			if (mainWindow) mainWindow.close();
+			child.unref();
+			app.quit();
 		});
 
 		ipc.handle('DOWNLOADED_UPDATE_ZIP', (event, data) => {
@@ -170,31 +198,13 @@ else {
 			});
 	});
 
-	app.on('window-all-closed', () => {
-		if (process.platform !== 'darwin') app.quit();
-	});
+	app.on('window-all-closed', () => {});
 
 	app.on('activate', () => {
 		if (mainWindow === null) createMainWindow();
 	});
 
 	app.on('will-quit', () => {
-		if (process.env.NODE_ENV !== 'development') globalShortcut.unregisterAll();
 		app.releaseSingleInstanceLock();
 	});
-
-	function readyToUpdate() {
-		const { spawn } = require('child_process');
-		const child = spawn(
-			path.join(EXEPATH, 'resources', 'ReadyUpdater.exe'),
-			['YES_I_WANNA_UPDATE_ASAR'],
-			{
-				detached: true,
-				shell: true,
-			}
-		);
-		if (mainWindow) mainWindow.close();
-		child.unref();
-		app.quit();
-	}
 }

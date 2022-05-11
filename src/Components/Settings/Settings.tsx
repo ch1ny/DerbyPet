@@ -38,7 +38,7 @@ export default function Settings(props: SettingsProps) {
                 onCancel={props.closeFunc}
                 centered={true}
                 footer={null}
-                destroyOnClose={false}
+                destroyOnClose={true}
                 mask={false}
                 maskClosable={false}
                 width={'50vw'}

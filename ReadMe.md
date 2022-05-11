@@ -8,19 +8,15 @@
 >
 > 而且还有很多站友希望我能分享给大家……
 
+### 使用建议
+
+<span style="color: red;">出于对 electron 性能及资源占用率的考量，建议暂时不要在使用大型软件（包括游戏）的同时开启本应用。</span>
+
 ## 安装
 
 ### 方法一、使用 exe 安装程序（推荐）
 
 [点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
-
-> 2022 年 3 月 4 日更新日志：新增版本 v 1.1.0，大规模重构项目，为项目增添部分功能（仍不完善），并为后续项目远程更新留出接口。
->
-> 2022 年 5 月 7 日更新日志：版本号 v 2.0.0，移除 v1 版本中的主窗口，仅保留马娘桌宠部分。
->
-> 2022 年 5 月 7 日更新日志：版本号 v 2.0.1，发现打包后的马娘桌宠无法自动获取焦点，重写打包命令及 Inno Setup 脚本，使桌宠以管理员身份运行。
->
-> 2022 年 5 月 9 日更新日志：版本号 v 2.1.0，项目重构，渲染进程使用 React + TypeScript 的开发方式。
 
 ### 方法二、自行编译
 
@@ -51,6 +47,25 @@ yarn dist
 #### 三、运行程序
 
 编译结束后，进入项目根目录下的 `dist/DerbyPet-win32-x64` 文件夹中，双击 `DerbyPet.exe` 即可运行程序。
+
+## 更新日志
+
+<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-11</span>
+
+1. 将右键菜单即时销毁，减少页面 DOM 过多导致移动人物时进行巨量重绘造成的 CPU 负担过重。**但仍不建议与大型软件同时使用。**
+
+<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-09</span>
+
+1. 项目重构，渲染进程使用 React + TypeScript 的开发方式。
+
+<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-07</span>
+
+1. 移除 v1 版本中的主窗口，仅保留马娘桌宠部分。
+2. 发现打包后的马娘桌宠无法自动获取焦点，重写打包命令及 Inno Setup 脚本，使桌宠以管理员身份运行。
+
+<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-03-04</span>
+
+1. 新增版本 v 1.1.0，大规模重构项目，为项目增添部分功能（仍不完善），并为后续项目远程更新留出接口。
 
 ## 其他
 

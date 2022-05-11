@@ -1,6 +1,7 @@
 import { Dropdown, Menu } from 'antd';
 import classNames from 'classnames';
 import React, { useEffect, useRef, useState } from 'react';
+import { throttle } from 'Utils/Global';
 import { setUmaMusume } from 'Utils/Store/actions';
 import store from 'Utils/Store/store';
 import './style.scss';
@@ -45,22 +46,26 @@ export default function Umamusume(props: UmamusumeProps) {
 	const [domAble, setDomAble] = useState(false);
 	const [isDragging, setIsDragging] = useState(false);
 	useEffect(() => {
-		document.onmousemove = (evt) => {
+		let _domAble = domAble
+		const [throttleMouseMove, clearThrottleMouseMove] = throttle((evt: MouseEvent) => {
 			if (!isDragging) {
 				const flag = evt.composedPath().length > (props.settingVisible ? 7 : 6);
-				if (flag !== domAble) {
-					(window as any).ipc.send('EXCHANGE_DOM_ABLE', flag);
-					setDomAble(flag);
-				}
+				setDomAble(flag);
+				_domAble = flag
 			}
+		}, 200)
+		document.onmousemove = throttleMouseMove;
+		return () => {
+			document.onmousemove = null;
+			clearThrottleMouseMove()
 		};
+	}, [props.settingVisible]);
+	useEffect(() => {
+		(window as any).ipc.send('EXCHANGE_DOM_ABLE', domAble);
 		if (!domAble) {
 			setShowDropdown(false);
 		}
-		return () => {
-			document.onmousemove = null;
-		};
-	}, [domAble, props.settingVisible]);
+	}, [domAble])
 
 	const [position, setPosition] = useState([0, 0]);
 	useEffect(() => {
@@ -122,8 +127,7 @@ export default function Umamusume(props: UmamusumeProps) {
 					setPosition([finalX, finalY]);
 				};
 
-				// 鼠标抬起事件
-				desktopPet.onmouseup = function () {
+				const onRelease = function () {
 					(window as any).ipc.send('RELEASE_MOUSE');
 					if (distinguishDragClickTimeout) {
 						clearTimeout(distinguishDragClickTimeout);
@@ -142,23 +146,18 @@ export default function Umamusume(props: UmamusumeProps) {
 							);
 					}
 					desktopPet.onmousemove = null;
+				};
+
+				// 鼠标抬起事件
+				desktopPet.onmouseup = function () {
 					desktopPet.onmouseleave = null;
+					onRelease()
 					desktopPet.onmouseup = null;
 				};
 
 				desktopPet.onmouseleave = function () {
-					(window as any).ipc.send('RELEASE_MOUSE');
-					if (distinguishDragClickTimeout) {
-						clearTimeout(distinguishDragClickTimeout);
-						distinguishDragClickTimeout = null;
-						if (!umaClicked && audioRef.current) {
-							audioRef.current.play();
-						}
-					} else {
-						setIsDragging(false);
-					}
-					desktopPet.onmousemove = null;
 					desktopPet.onmouseup = null;
+					onRelease()
 					desktopPet.onmouseleave = null;
 				};
 			};
@@ -205,6 +204,7 @@ export default function Umamusume(props: UmamusumeProps) {
 					visible={showDropdown}
 					onVisibleChange={setShowDropdown}
 					getPopupContainer={() => (dropdownRef.current ? dropdownRef.current : document.body)}
+					destroyPopupOnHide={true}
 				>
 					<div
 						className='desktopContainer'
