@@ -46,7 +46,6 @@ function createMainWindow() {
 		alwaysOnTop: true,
 		minimizable: false,
 		skipTaskbar: true,
-		focusable: false,
 		webPreferences: {
 			preload: path.join(DIRNAME, 'electronAssets', 'preload.js'),
 			devTools: process.env.NODE_ENV === 'development',
@@ -102,6 +101,7 @@ function createMainWindow() {
 		mainWindow.setIgnoreMouseEvents(true, {
 			forward: true,
 		});
+
 		// if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 	});
 
@@ -115,11 +115,6 @@ function createMainWindow() {
 		}
 	};
 	ipc.on('EXCHANGE_DOM_ABLE', exchangeDomAble);
-
-	// ipc.on('RELEASE_MOUSE', () => {
-	// 	mainWindow.showInactive();
-	// 	mainWindow.moveTop();
-	// });
 
 	ipc.handle('APP_VERSION', app.getVersion);
 

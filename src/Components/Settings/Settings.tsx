@@ -1,10 +1,11 @@
 import { SettingFilled } from "@ant-design/icons";
-import { Anchor, Divider, Modal } from "antd";
+import { Anchor, Divider, Modal, Typography } from "antd";
 import React, { useRef, useState } from "react";
 import Draggable from "react-draggable";
 import About from "./About/About";
 import Appearance from "./Appearance/Appearance";
 import './style.scss';
+import UmamusumeSetting from "./UmamusumeSetting/UmamusumeSetting";
 
 interface SettingsProps {
     visible: boolean,
@@ -74,20 +75,21 @@ export default function Settings(props: SettingsProps) {
                     </div>
                     <div className="settings" ref={anchorRef}>
                         <div>
-                            <h2 id='appearance'>外观设置</h2>
+                            <Typography.Title level={3} id='appearance'>外观设置</Typography.Title>
                             <Appearance />
                         </div>
                         <Divider>
                             <SettingFilled />
                         </Divider>
                         <div>
-                            <h2 id='umamusumes'>赛马娘配置</h2>
+                            <Typography.Title level={3} id='umamusumes'>赛马娘配置</Typography.Title>
+                            <UmamusumeSetting />
                         </div>
                         <Divider>
                             <SettingFilled />
                         </Divider>
                         <div>
-                            <h2 id="about">关于</h2>
+                            <Typography.Title level={3} id='about'>关于</Typography.Title>
                             <About />
                         </div>
                     </div>

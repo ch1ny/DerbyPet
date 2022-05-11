@@ -57,7 +57,7 @@ module.exports = {
 						loader: 'url-loader',
 						options: {
 							esModule: false,
-							limit: 1024, //对图片的大小做限制，1kb
+							limit: 1024,
 						},
 					},
 				],

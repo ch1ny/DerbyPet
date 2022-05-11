@@ -1,12 +1,13 @@
+import { CloudDownloadOutlined, ImportOutlined, PoweroffOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { throttle } from 'Utils/Global';
 import { setUmaMusume } from 'Utils/Store/actions';
 import store from 'Utils/Store/store';
+import { UmasMapPayload, UmasMapPayloadAudio, UmasMapPayloadPic } from 'Utils/Types';
+import { UmasMapContext } from 'Views/Main/App';
 import './style.scss';
-import * as umas from './Uma/umas.json';
-import { umaMenu } from './umaMenu';
 
 interface UmamusumeProps {
 	checkForUpdate: Function;
@@ -14,6 +15,28 @@ interface UmamusumeProps {
 	showSetting: Function;
 }
 const translateRegex = new RegExp(/.*?translate\((\d{1,})px, (\d{1,})px\).*?/)
+
+function returnUmaPics(umasMap: Map<string, UmasMapPayload>, umaName: string, umaClicked: boolean) {
+	const pics = ((umasMap.get(umaName) as UmasMapPayload).pic as [UmasMapPayloadPic, UmasMapPayloadPic])
+	return (
+		<>
+			<img
+				src={pics[0].modify ? require(`${pics[0].url}`) : require(`Assets/${pics[0].url}`)}
+				className={classNames({
+					uma: true,
+					'uma-hidden': umaClicked,
+				})}
+			/>
+			<img
+				src={pics[0].modify ? require(`${pics[1].url}`) : require(`Assets/${pics[1].url}`)}
+				className={classNames({
+					uma: true,
+					'uma-hidden': !umaClicked,
+				})}
+			/>
+		</>
+	)
+}
 
 export default function Umamusume(props: UmamusumeProps) {
 	const reduxState = store.getState()
@@ -164,12 +187,24 @@ export default function Umamusume(props: UmamusumeProps) {
 		}
 	}, []);
 
+	const [umasMap, dispatchUmasMap] = useContext(UmasMapContext)
+	const umamusumes = (() => {
+		const umasArray = []
+		for (const [key, val] of umasMap) {
+			umasArray.push({
+				key: key,
+				label: val.label
+			})
+		}
+		return umasArray;
+	})()
+
 	const menuFunc = function (evt: { key: string }) {
 		switch (evt.key) {
 			case 'START_GAME':
 				if (audioRef.current) {
 					audioRef.current.src =
-						umas[`${umaName}` as keyof typeof umas]['audio']['start'];
+						((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).start
 					audioRef.current.load();
 					(window as any).ipc.send('START_GAME');
 					audioRef.current.play();
@@ -186,7 +221,7 @@ export default function Umamusume(props: UmamusumeProps) {
 				break;
 			default:
 				store.dispatch(setUmaMusume(
-					Object.prototype.hasOwnProperty.call(umas, evt.key) ? evt.key : '特别周'
+					umasMap.has(evt.key) ? evt.key : '特别周'
 				))
 				break;
 		}
@@ -194,6 +229,37 @@ export default function Umamusume(props: UmamusumeProps) {
 	};
 
 	const dropdownRef = useRef<HTMLDivElement | null>(null)
+
+	const umaMenu = [
+		{
+			label: '启动游戏',
+			key: 'START_GAME',
+			icon: <PoweroffOutlined />,
+		},
+		{
+			label: '更换马娘',
+			key: 'CHANGE_UMAMUSUME',
+			popupOffset: [-2, 0],
+			popupClassName: 'umamusumesCanChoose',
+			icon: <UserSwitchOutlined />,
+			children: umamusumes,
+		},
+		{
+			label: '检查更新',
+			key: 'CHECK_FOR_UPDATE',
+			icon: <CloudDownloadOutlined />,
+		},
+		{
+			label: '应用设置',
+			key: 'SETTINGS',
+			icon: <SettingOutlined />,
+		},
+		{
+			label: '退出应用',
+			key: 'QUIT',
+			icon: <ImportOutlined />,
+		},
+	];
 
 	return (
 		<>
@@ -213,27 +279,16 @@ export default function Umamusume(props: UmamusumeProps) {
 						}}
 						ref={desktopPetRef}>
 						<div style={{ opacity: needOpacity && (props.settingVisible || !domAble) ? umaOpacity : 1 }}>
-							<img
-								src={require(`./Uma/pic/${umaName}0.png`)}
-								className={classNames({
-									uma: true,
-									'uma-hidden': umaClicked,
-								})}
-							/>
-							<img
-								src={require(`./Uma/pic/${umaName}1.png`)}
-								className={classNames({
-									uma: true,
-									'uma-hidden': !umaClicked,
-								})}
-							/>
+							{
+								returnUmaPics(umasMap, umaName, umaClicked)
+							}
 						</div>
 					</div>
 				</Dropdown>
 				<audio
 					ref={audioRef}
 					preload='true'
-					src={umas[`${umaName}` as keyof typeof umas]['audio']['click']}
+					src={((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).click}
 					onPlay={() => {
 						if (desktopPetRef.current) {
 							desktopPetRef.current.classList.remove('desktopContainer-rotateOut');
@@ -260,7 +315,7 @@ export default function Umamusume(props: UmamusumeProps) {
 					onEnded={() => {
 						if (audioRef.current && desktopPetRef.current) {
 							audioRef.current.src =
-								umas[`${umaName}` as keyof typeof umas]['audio']['click'];
+								((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).click;
 							desktopPetRef.current.classList.add('desktopContainer-rotateOut');
 							setTimeout(() => {
 								if (desktopPetRef.current) {
