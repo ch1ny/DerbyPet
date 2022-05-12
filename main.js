@@ -134,12 +134,12 @@ function createMainWindow() {
 				})
 				.then((res) => {
 					// console.log(res);
-					resolve(res.filePaths[0]);
+					resolve({ canceled: res.canceled, file: res.filePaths[0] });
 				})
 				.finally(() => {
-					mainWindow.setAlwaysOnTop(true);
 					mainWindow.showInactive();
 					mainWindow.moveTop();
+					mainWindow.setAlwaysOnTop(true);
 				});
 		});
 	});

@@ -178,8 +178,8 @@ function UmaAudio(props: UmaAudioProps) {
                         : <Button icon={<EditOutlined />} onClick={() => { setShowUrl(true) }}>自定义</Button>
                 } */}
                 <Button icon={<EditOutlined />} onClick={() => {
-                    (window as any).ipc.invoke('SELECT_AUDIO').then((res: string) => {
-                        handleUpdateUrl(res)
+                    (window as any).ipc.invoke('SELECT_AUDIO').then((res: { canceled: boolean, file: string }) => {
+                        if (!res.canceled) handleUpdateUrl(res.file)
                     })
                 }}>自定义</Button>
                 <Button icon={<ReloadOutlined />} onClick={() => { if (props.onDefault) props.onDefault(); globalMessage.success('恢复完毕') }}>恢复默认</Button>
