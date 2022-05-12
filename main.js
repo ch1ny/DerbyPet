@@ -184,7 +184,7 @@ else {
 		});
 
 		ipc.on('START_GAME', () => {
-			shell.openExternal('dmmgameplayer://umamusume/cl/general/umamusume');
+			shell.openExternal('dmmgameplayer://play/GCL/umamusume/cl/win');
 		});
 
 		if (process.env.NODE_ENV === 'development')
