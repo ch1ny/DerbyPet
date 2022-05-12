@@ -34,6 +34,9 @@ export default function App() {
     }, []);
 
     const [showSettings, setShowSettings] = useState(false)
+    useEffect(() => {
+        (window as any).ipc.send('SETTINGS_MODAL_SHOW_STATUS_EXCHANGED', showSettings)
+    }, [showSettings])
 
     const [updating, setUpdating] = useState(false);
 

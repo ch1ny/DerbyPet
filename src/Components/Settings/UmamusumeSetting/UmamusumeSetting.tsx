@@ -1,6 +1,5 @@
-import { CheckCircleOutlined, CustomerServiceOutlined, EditOutlined, ReloadOutlined } from "@ant-design/icons";
-import { Button, Divider, Image, Input, Select, Typography } from "antd";
-import classNames from "classnames";
+import { CustomerServiceOutlined, EditOutlined, ReloadOutlined } from "@ant-design/icons";
+import { Button, Divider, Image, Select, Typography } from "antd";
 import { globalMessage } from "Components/GlobalMessage/GlobalMessage";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { setModifiedList, setUmaMusume } from "Utils/Store/actions";
@@ -150,29 +149,19 @@ interface UmaAudioProps {
     onDefault?: Function
 }
 function UmaAudio(props: UmaAudioProps) {
-    const [showUrl, setShowUrl] = useState(false)
-    const [url, setUrl] = useState(props.audio)
-    useEffect(() => {
-        setUrl(props.audio)
-    }, [props.audio])
-
-    const [audioFormatValid, setAudioFormatValid] = useState(true)
-    const handleUpdateUrl = () => {
-        if (url === props.audio) {
+    const handleUpdateUrl = (newUrl: string) => {
+        if (newUrl === props.audio) {
             globalMessage.info('未发生改动')
-            setShowUrl(false)
             return
         }
         const audioRegex = new RegExp(/.(mp3|ogg|wav)$/, 'i')
-        if (audioRegex.test(url)) {
+        if (audioRegex.test(newUrl)) {
             if (props.onModify) {
-                props.onModify(url)
+                props.onModify(newUrl)
             }
             globalMessage.success('自定义修改成功')
-            setShowUrl(false)
         } else {
             globalMessage.error('仅支持 mp3、ogg、wav 格式')
-            setAudioFormatValid(false)
         }
     }
 
@@ -183,23 +172,17 @@ function UmaAudio(props: UmaAudioProps) {
             </Divider>
             <div className="buttons">
                 <Button type="primary" icon={<CustomerServiceOutlined />} onClick={() => { if (props.onPlay) props.onPlay(props.audio) }}>试听</Button>
-                {
+                {/* {
                     showUrl
                         ? <Button icon={<CheckCircleOutlined />} type='primary' onClick={handleUpdateUrl}>确认</Button>
                         : <Button icon={<EditOutlined />} onClick={() => { setShowUrl(true) }}>自定义</Button>
-                }
-                <Button icon={<ReloadOutlined />} onClick={() => { if (props.onDefault) props.onDefault() }}>恢复默认</Button>
-            </div>
-            <div className={classNames({
-                'urlInput': true,
-                'urlInput-show': showUrl
-            })}>
-                <Input
-                    placeholder="请输入网络地址或文件本地地址"
-                    value={url}
-                    onChange={(evt) => { setUrl(evt.target.value); setAudioFormatValid(true) }}
-                    status={audioFormatValid ? '' : 'error'}
-                />
+                } */}
+                <Button icon={<EditOutlined />} onClick={() => {
+                    (window as any).ipc.invoke('SELECT_AUDIO').then((res: string) => {
+                        handleUpdateUrl(res)
+                    })
+                }}>自定义</Button>
+                <Button icon={<ReloadOutlined />} onClick={() => { if (props.onDefault) props.onDefault(); globalMessage.success('恢复完毕') }}>恢复默认</Button>
             </div>
         </div>
     )

@@ -74,7 +74,7 @@ export default function Umamusume(props: UmamusumeProps) {
 			if (!isDragging) {
 				const flag = evt.composedPath().length > (props.settingVisible ? 7 : 6);
 				setDomAble(flag);
-				_domAble = flag
+				_domAble = flag;
 			}
 		}, 200)
 		document.onmousemove = throttleMouseMove;
@@ -124,8 +124,8 @@ export default function Umamusume(props: UmamusumeProps) {
 				// 鼠标按下的坐标
 				const startX = evt.clientX;
 				const startY = evt.clientY;
-				//鼠标抬起事件
-				desktopPet.onmousemove = function (evt) {
+
+				const moveThrottle = throttle(function (evt: MouseEvent) {
 					// 元素最终的位置
 					let finalX = initialX + (evt.clientX - startX);
 					let finalY = initialY + (evt.clientY - startY);
@@ -148,7 +148,8 @@ export default function Umamusume(props: UmamusumeProps) {
 					}
 					// 设置元素移动位置
 					setPosition([finalX, finalY]);
-				};
+				}, 3)
+				desktopPet.onmousemove = moveThrottle[0]
 
 				const onRelease = function () {
 					(window as any).ipc.send('RELEASE_MOUSE');
@@ -168,6 +169,7 @@ export default function Umamusume(props: UmamusumeProps) {
 								JSON.stringify([translate[1], translate[2]])
 							);
 					}
+					moveThrottle[1]
 					desktopPet.onmousemove = null;
 				};
 

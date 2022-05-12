@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Tray, Menu, screen, nativeImage, shell } = require('electron');
+const { app, BrowserWindow, Tray, Menu, screen, nativeImage, shell, dialog } = require('electron');
 const path = require('path');
 const url = require('url');
 const fs = require('fs-extra');
@@ -45,6 +45,7 @@ function createMainWindow() {
 		resizable: false,
 		alwaysOnTop: true,
 		minimizable: false,
+		focusable: false,
 		skipTaskbar: true,
 		webPreferences: {
 			preload: path.join(DIRNAME, 'electronAssets', 'preload.js'),
@@ -90,7 +91,7 @@ function createMainWindow() {
 		tray.setToolTip(`ウマ娘 Pretty Derby\n(¯﹃¯)\n德比桌宠`);
 		tray.on('click', () => {
 			if (mainWindow) {
-				mainWindow.restore();
+				mainWindow.showInactive();
 				mainWindow.moveTop();
 			} else createMainWindow();
 		});
@@ -103,7 +104,7 @@ function createMainWindow() {
 			forward: true,
 		});
 
-		if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
+		// if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 	});
 
 	const exchangeDomAble = (event, able) => {
@@ -117,11 +118,36 @@ function createMainWindow() {
 	};
 	ipc.on('EXCHANGE_DOM_ABLE', exchangeDomAble);
 
+	// ipc.on('RELEASE_MOUSE', () => {
+	// 	mainWindow.showInactive();
+	// 	mainWindow.moveTop();
+	// });
+
 	ipc.handle('APP_VERSION', app.getVersion);
+	ipc.handle('SELECT_AUDIO', () => {
+		return new Promise((resolve) => {
+			mainWindow.setAlwaysOnTop(false);
+			dialog
+				.showOpenDialog({
+					title: '选择自定义音频文件',
+					filters: [{ name: '音频文件', extensions: ['mp3', 'ogg', 'wav'] }],
+				})
+				.then((res) => {
+					// console.log(res);
+					resolve(res.filePaths[0]);
+				})
+				.finally(() => {
+					mainWindow.setAlwaysOnTop(true);
+					mainWindow.showInactive();
+					mainWindow.moveTop();
+				});
+		});
+	});
 
 	mainWindow.once('closed', () => {
 		ipc.removeListener('EXCHANGE_DOM_ABLE', exchangeDomAble);
 		ipc.removeHandler('APP_VERSION');
+		ipc.removeHandler('SELECT_AUDIO');
 		mainWindow = null;
 		tray.setContextMenu(
 			Menu.buildFromTemplate([
