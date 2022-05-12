@@ -6,6 +6,8 @@ import Umamusume from 'Components/Umamusume/Umamusume';
 import UpdateBubbles from 'Components/UpdateBubble/UpdateBubbles';
 import React, { createContext, useEffect, useReducer, useState } from 'react';
 import { needUpdate } from 'Utils/Global';
+import { setModifiedList } from 'Utils/Store/actions';
+import store from 'Utils/Store/store';
 import { UmasMapActionTypes, UmasMapPayload } from 'Utils/Types';
 import './App.scss';
 
@@ -20,7 +22,7 @@ const defaultUmas = (() => {
     return umaMap
 })()
 
-export const UmasMapContext = createContext<[Map<string, UmasMapPayload>, React.DispatchWithoutAction | null]>([defaultUmas, null])
+export const UmasMapContext = createContext<[Map<string, UmasMapPayload>, (React.Dispatch<{ type: UmasMapActionTypes; payload: UmasMapPayload; }>) | null]>([defaultUmas, null])
 
 export default function App() {
     const [appVersion, setAppVersion] = useState('');
@@ -35,7 +37,7 @@ export default function App() {
 
     const [updating, setUpdating] = useState(false);
 
-    const [umasMap, dispatchUmasMap] = useReducer<any>((state: Map<string, UmasMapPayload>, action: { type: UmasMapActionTypes, payload: UmasMapPayload }) => {
+    const [umasMap, dispatchUmasMap] = useReducer<(state: Map<string, UmasMapPayload>, action: { type: UmasMapActionTypes, payload: UmasMapPayload }) => Map<string, UmasMapPayload>>((state: Map<string, UmasMapPayload>, action: { type: UmasMapActionTypes, payload: UmasMapPayload }) => {
         switch (action.type) {
             case UmasMapActionTypes.ADD_INTO_UMA_MUSUMES_LIST:
                 return new Map(state.set(action.payload.key, action.payload));
@@ -45,6 +47,16 @@ export default function App() {
             default: return state
         }
     }, defaultUmas)
+    useEffect(() => {
+        (window as any).ipc.invoke('GET_MODIFIED_JSON').then((json: { [key: string]: UmasMapPayload }) => {
+            for (const key in json) {
+                if (Object.prototype.hasOwnProperty.call(json, key)) {
+                    dispatchUmasMap({ type: UmasMapActionTypes.ADD_INTO_UMA_MUSUMES_LIST, payload: json[`${key}`] })
+                }
+            }
+            store.dispatch(setModifiedList(json))
+        })
+    }, [])
 
     return (
         <>

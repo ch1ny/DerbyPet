@@ -1,5 +1,6 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import { SET_NEED_OPACITY, SET_UMA_MUSUME, SET_UMA_OPACITY } from "./actions";
+import { UmasMapPayload } from "Utils/Types";
+import { SET_MODIFIED_LIST, SET_NEED_OPACITY, SET_UMA_MUSUME, SET_UMA_OPACITY } from "./actions";
 
 const initialStates = {
     needOpacity: (() => {
@@ -9,6 +10,13 @@ const initialStates = {
         const umaOpacity = localStorage.getItem('umaOpacity')
         return umaOpacity === null ? 1 : Number(umaOpacity)
     })()
+}
+
+function setModifiedList(state = {}, action: { type: string, modifiedList: { [key: string]: UmasMapPayload } }) {
+    if (action.type === SET_MODIFIED_LIST) {
+        return action.modifiedList
+    }
+    return state
 }
 
 function setUmaMusume(state = '特别周', action: { type: string, umamusume: string }) {
@@ -33,6 +41,7 @@ function setUmaOpacity(state = initialStates.umaOpacity, action: { type: string,
 }
 
 const reducers = combineReducers({
+    modifiedList: setModifiedList,
     umaMusume: setUmaMusume,
     needOpacity: setNeedOpacity,
     umaOpacity: setUmaOpacity

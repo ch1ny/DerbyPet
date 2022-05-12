@@ -49,6 +49,7 @@ function createMainWindow() {
 		webPreferences: {
 			preload: path.join(DIRNAME, 'electronAssets', 'preload.js'),
 			devTools: process.env.NODE_ENV === 'development',
+			webSecurity: false,
 		},
 	});
 
@@ -102,7 +103,7 @@ function createMainWindow() {
 			forward: true,
 		});
 
-		// if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
+		if (process.env.NODE_ENV === 'development') mainWindow.webContents.openDevTools();
 	});
 
 	const exchangeDomAble = (event, able) => {
@@ -176,6 +177,16 @@ else {
 			if (mainWindow) mainWindow.close();
 			child.unref();
 			app.quit();
+		});
+
+		const modifyJson = fs.readJSONSync(path.join(EXEPATH, 'resources', 'modify.json'), {
+			throws: false,
+		});
+		ipc.handle('GET_MODIFIED_JSON', () => {
+			return modifyJson === null ? {} : modifyJson;
+		});
+		ipc.handle('SET_MODIFIED_JSON', (evt, json) => {
+			fs.writeJSONSync(path.join(EXEPATH, 'resources', 'modify.json'), JSON.parse(json));
 		});
 
 		ipc.handle('DOWNLOADED_UPDATE_ZIP', (event, data) => {

@@ -16,6 +16,19 @@
 				display: flex;
 				justify-content: space-around;
 			}
+			.urlInput {
+				width: 90%;
+				margin-top: 0px;
+				height: 0px;
+				overflow-y: hidden;
+				transition-duration: 250ms;
+				transition-timing-function: linear;
+
+				&-show {
+					height: 50px;
+					margin-top: 10px;
+				}
+			}
 		}
 	}
 }
