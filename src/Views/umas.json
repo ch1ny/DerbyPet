@@ -803,6 +803,18 @@
 			"start": "https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/UmamusumePrettyDerby~/InesFujin.mp3"
 		}
 	},
+	"目白善信": {
+		"key": "目白善信",
+		"label": "目白善信",
+		"pic": [
+			{ "url": "UmaPic/目白善信0.png", "modify": false },
+			{ "url": "UmaPic/目白善信1.png", "modify": false }
+		],
+		"audio": {
+			"click": "https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/MejiroPalmer.mp3",
+			"start": "https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/UmamusumePrettyDerby~/MejiroPalmer.mp3"
+		}
+	},
 	"大和赤骥": {
 		"key": "大和赤骥",
 		"label": "大和赤骥",
