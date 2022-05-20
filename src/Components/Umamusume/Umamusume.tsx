@@ -1,18 +1,15 @@
 import { CloudDownloadOutlined, ImportOutlined, PoweroffOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import classNames from 'classnames';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { throttle } from 'Utils/Global';
 import { setUmaMusume } from 'Utils/Store/actions';
 import store from 'Utils/Store/store';
 import { UmasMapPayload, UmasMapPayloadAudio, UmasMapPayloadPic } from 'Utils/Types';
-import { UmasMapContext } from 'Views/Main/App';
 import './style.scss';
 
 interface UmamusumeProps {
 	checkForUpdate: Function;
-	settingVisible: boolean;
-	showSetting: Function;
 }
 const translateRegex = new RegExp(/.*?translate\((\d{1,})px, (\d{1,})px\).*?/)
 
@@ -48,7 +45,7 @@ export default function Umamusume(props: UmamusumeProps) {
 			const { umaMusume, needOpacity, umaOpacity } = store.getState()
 			setUmaName(umaMusume);
 			setNeedOpacity(needOpacity)
-			setUmaOpacity(umaOpacity)
+			setUmaOpacity(umaOpacity);
 		});
 		const MY_UMA = localStorage.getItem('MY_UMA');
 		if (MY_UMA) {
@@ -69,12 +66,10 @@ export default function Umamusume(props: UmamusumeProps) {
 	const [domAble, setDomAble] = useState(false);
 	const [isDragging, setIsDragging] = useState(false);
 	useEffect(() => {
-		let _domAble = domAble
 		const [throttleMouseMove, clearThrottleMouseMove] = throttle((evt: MouseEvent) => {
 			if (!isDragging) {
-				const flag = evt.composedPath().length > (props.settingVisible ? 7 : 6);
+				const flag = evt.composedPath().length > 6;
 				setDomAble(flag);
-				_domAble = flag;
 			}
 		}, 200)
 		document.onmousemove = throttleMouseMove;
@@ -82,7 +77,7 @@ export default function Umamusume(props: UmamusumeProps) {
 			document.onmousemove = null;
 			clearThrottleMouseMove()
 		};
-	}, [props.settingVisible]);
+	}, []);
 	useEffect(() => {
 		(window as any).ipc.send('EXCHANGE_DOM_ABLE', domAble);
 		if (!domAble) {
@@ -189,7 +184,11 @@ export default function Umamusume(props: UmamusumeProps) {
 		}
 	}, []);
 
-	const [umasMap, dispatchUmasMap] = useContext(UmasMapContext)
+	const [umasMap, setUmasMap] = useState(store.getState().umasMap)
+	useEffect(() => store.subscribe(() => {
+		setUmasMap(store.getState().umasMap)
+	}), [])
+
 	const umamusumes = (() => {
 		const umasArray = []
 		for (const [key, val] of umasMap) {
@@ -219,7 +218,7 @@ export default function Umamusume(props: UmamusumeProps) {
 				props.checkForUpdate();
 				break;
 			case 'SETTINGS':
-				props.showSetting();
+				(window as any).ipc.send('SHOW_SETTINGS')
 				break;
 			default:
 				store.dispatch(setUmaMusume(
@@ -280,7 +279,7 @@ export default function Umamusume(props: UmamusumeProps) {
 							transform: `translate(${position[0]}px, ${position[1]}px)`
 						}}
 						ref={desktopPetRef}>
-						<div style={{ opacity: needOpacity && (props.settingVisible || !domAble) ? umaOpacity : 1 }}>
+						<div style={{ opacity: needOpacity && !domAble ? umaOpacity : 1 }}>
 							{
 								returnUmaPics(umasMap, umaName, umaClicked)
 							}

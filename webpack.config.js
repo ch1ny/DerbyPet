@@ -20,6 +20,7 @@ module.exports = {
 	},
 	entry: {
 		main: './src/Views/Main/index.tsx',
+		setting: './src/Views/Setting/index.tsx',
 	},
 	output: {
 		path: path.resolve(__dirname, './build'),
@@ -69,6 +70,11 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			filename: 'main/index.html',
 			chunks: ['main'],
+			template: './public/index.html',
+		}),
+		new HtmlWebpackPlugin({
+			filename: 'setting/index.html',
+			chunks: ['setting'],
 			template: './public/index.html',
 		}),
 	],

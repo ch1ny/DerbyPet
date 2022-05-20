@@ -11,6 +11,9 @@ const _ipcRenderer = Object.assign(
 		removeEventListener: (channel, cb) => {
 			ipcRenderer.removeListener(channel, cb);
 		},
+		sendTo: (webContentsId, channel, ...args) => {
+			ipcRenderer.sendTo(webContentsId, channel, ...args);
+		},
 	},
 	ipcRenderer
 );

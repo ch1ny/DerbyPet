@@ -1,16 +1,3 @@
-.settingsModalWrap {
-	&::-webkit-scrollbar {
-		width: 0;
-		height: 0;
-	}
-}
-
-.settingContainer {
-	width: 100%;
-	height: 50vh;
-	display: flex;
-}
-
 .anchorContainer {
 	width: 23%;
 	height: 100%;
@@ -22,7 +9,7 @@
 	height: 100%;
 	overflow-y: scroll;
 	overflow-x: hidden;
-	padding: 1rem;
+	padding-inline: 1rem;
 }
 
 .settings::-webkit-scrollbar {

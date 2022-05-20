@@ -1,11 +1,10 @@
 import { CustomerServiceOutlined, EditOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Divider, Image, Select, Typography } from "antd";
 import { globalMessage } from "Components/GlobalMessage/GlobalMessage";
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { setModifiedList, setUmaMusume } from "Utils/Store/actions";
+import React, { useEffect, useRef, useState } from "react";
+import { setModifiedList, setUmaMusume, updateUmasMap } from "Utils/Store/actions";
 import store from "Utils/Store/store";
 import { UmasMapActionTypes, UmasMapPayload, UmasMapPayloadAudio, UmasMapPayloadPic } from "Utils/Types";
-import { UmasMapContext } from "Views/Main/App";
 import './style.scss';
 
 function returnUmaPics(umasMap: Map<string, UmasMapPayload>, nowUma: string, container: HTMLDivElement) {
@@ -30,7 +29,12 @@ export default function UmamusumeSetting() {
         setNowUma(store.getState().umaMusume)
     }), [])
 
-    const [umasMap, dispatchUmasMap] = useContext(UmasMapContext)
+    const [umasMap, setUmasMap] = useState(store.getState().umasMap)
+    useEffect(() =>
+        store.subscribe(() => {
+            setUmasMap(store.getState().umasMap)
+        })
+        , [])
 
     const picsContainerRef = useRef<HTMLDivElement | null>(null)
 
@@ -54,7 +58,7 @@ export default function UmamusumeSetting() {
     }), [])
 
     const handleModify = (type: string, url: string) => {
-        const defaultJson = ((require('Views/Main/umas')) as { [key: string]: UmasMapPayload })[`${nowUma}`];
+        const defaultJson = ((require('Views/umas')) as { [key: string]: UmasMapPayload })[`${nowUma}`];
 
         const payload = Object.assign({}, umaInfo, {
             audio: Object.assign({}, (umaInfo.audio as UmasMapPayloadAudio), {
@@ -73,11 +77,9 @@ export default function UmamusumeSetting() {
                 [`${payload.key}`]: payload
             })))
         }
-
-        if (dispatchUmasMap)
-            dispatchUmasMap({
-                type: UmasMapActionTypes.ADD_INTO_UMA_MUSUMES_LIST, payload: payload as UmasMapPayload
-            })
+        store.dispatch(updateUmasMap({
+            type: UmasMapActionTypes.ADD_INTO_UMA_MUSUMES_LIST, payload: payload as UmasMapPayload
+        }))
     }
 
     return (
@@ -86,14 +88,14 @@ export default function UmamusumeSetting() {
                 <Typography.Title level={4}>当前正在使用的看板马娘</Typography.Title>
                 <Select
                     showSearch
-                    onChange={(value) => {
+                    onSelect={(value: string) => {
                         store.dispatch(setUmaMusume(value))
                     }}
                     filterOption={(input, option) => {
                         return (option?.value as string).indexOf(input) >= 0
                     }}
                     style={{ width: '10em' }}
-                    defaultValue={nowUma}
+                    value={nowUma}
                 >
                     <>
                         {
@@ -178,7 +180,7 @@ function UmaAudio(props: UmaAudioProps) {
                         : <Button icon={<EditOutlined />} onClick={() => { setShowUrl(true) }}>自定义</Button>
                 } */}
                 <Button icon={<EditOutlined />} onClick={() => {
-                    (window as any).ipc.invoke('SELECT_AUDIO').then((res: { canceled: boolean, file: string }) => {
+                    (window as any).ipc.invoke('SELECT_LOCAL_AUDIO').then((res: { canceled: boolean, file: string }) => {
                         if (!res.canceled) handleUpdateUrl(res.file)
                     })
                 }}>自定义</Button>

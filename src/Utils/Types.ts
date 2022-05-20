@@ -1,6 +1,7 @@
 export enum UmasMapActionTypes {
     ADD_INTO_UMA_MUSUMES_LIST,
-    REMOVE_FROM_UMA_MUSUMES_LIST
+    REMOVE_FROM_UMA_MUSUMES_LIST,
+    INIT_UMA_MUSUMES_LIST
 }
 export interface UmasMapPayloadPic {
     url: string,
