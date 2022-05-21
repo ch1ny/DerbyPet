@@ -1,7 +1,7 @@
 import { Button, Image, Progress } from "antd";
 import axios from "axios";
 import { globalMessage } from "Components/GlobalMessage/GlobalMessage";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { needUpdate } from "Utils/Global";
 
 export default function About() {
@@ -15,7 +15,7 @@ export default function About() {
     const thisYear = new Date().getFullYear()
     const [latestVersion, setLatestVersion] = useState('');
     const [checking, setChecking] = useState(false);
-    const checkForUpdate = () => {
+    const checkForUpdate = useCallback(() => {
         setChecking(true);
         axios
             .get('https://assets.aiolia.top/ElectronApps/DerbyPet/manifest.json', {
@@ -36,12 +36,12 @@ export default function About() {
             .finally(() => {
                 setChecking(false);
             });
-    };
+    }, [appVersion]);
 
     const [total, setTotal] = useState(Infinity);
     const [loaded, setLoaded] = useState(0);
     const [updating, setUpdating] = useState(false);
-    const update = () => {
+    const update = useCallback(() => {
         setUpdating(true);
         axios
             .get(`https://assets.aiolia.top/ElectronApps/DerbyPet/${latestVersion}/update.zip`, {
@@ -67,7 +67,7 @@ export default function About() {
                 fr.readAsBinaryString(res.data);
                 globalMessage.success({ content: '更新包下载完毕，即将重启应用...' });
             });
-    };
+    }, [latestVersion]);
 
     return (
         <div style={{ textAlign: 'center', userSelect: 'none' }}>

@@ -1,5 +1,5 @@
 import { Checkbox, Slider } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { setNeedOpacity, setUmaOpacity } from "Utils/Store/actions";
 import store from "Utils/Store/store";
 
@@ -17,10 +17,10 @@ export default function Appearance() {
             <div>
                 <Checkbox
                     checked={_needOpacity}
-                    onChange={(evt) => {
+                    onChange={useCallback((evt) => {
                         _setNeedOpacity(evt.target.checked)
                         store.dispatch(setNeedOpacity(evt.target.checked))
-                    }}
+                    }, [])}
                 >空闲时透明化</Checkbox>
                 <span style={{ float: 'right', display: _needOpacity ? '' : 'none' }}>当前透明度：{opacity.toFixed(2)}</span>
                 <Slider
@@ -29,9 +29,9 @@ export default function Appearance() {
                     min={0}
                     max={1}
                     step={0.01}
-                    onChange={(value) => {
+                    onChange={useCallback((value) => {
                         store.dispatch(setUmaOpacity(value))
-                    }}
+                    }, [])}
                 />
             </div>
         </>

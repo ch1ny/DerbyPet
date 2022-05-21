@@ -1,6 +1,6 @@
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { Checkbox } from "antd";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 export default function General() {
     const [openAtLogin, setOpenAtLogin] = useState(false);
@@ -17,10 +17,10 @@ export default function General() {
             <div>
                 <Checkbox
                     checked={openAtLogin}
-                    onChange={(evt) => {
+                    onChange={useCallback((evt) => {
                         setOpenAtLogin(evt.target.checked);
                         (window as any).ipc.send('EXCHANGE_OPEN_AFTER_START_STATUS', evt.target.checked)
-                    }}
+                    }, [])}
                 >
                     开机时启动
                 </Checkbox>
@@ -29,10 +29,10 @@ export default function General() {
             <div style={{ marginTop: '0.5em' }}>
                 <Checkbox
                     checked={autoCheckForUpdate}
-                    onChange={(evt) => {
+                    onChange={useCallback((evt) => {
                         setAutoCheckForUpdate(evt.target.checked);
                         localStorage.setItem('autoCheckForUpdate', String(evt.target.checked))
-                    }}
+                    }, [])}
                 >
                     启动时检查更新
                 </Checkbox>

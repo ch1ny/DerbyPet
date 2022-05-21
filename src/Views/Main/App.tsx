@@ -3,7 +3,7 @@ import axios from 'axios';
 import { globalMessage } from 'Components/GlobalMessage/GlobalMessage';
 import Umamusume from 'Components/Umamusume/Umamusume';
 import UpdateBubbles from 'Components/UpdateBubble/UpdateBubbles';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { needUpdate } from 'Utils/Global';
 import { setModifiedList, setTheOtherWindowId, updateUmasMap } from 'Utils/Store/actions';
 import store from 'Utils/Store/store';
@@ -40,7 +40,7 @@ export default function App() {
         })
     }, [])
 
-    const checkForUpdate = () => {
+    const checkForUpdate = useCallback((showMessage = true) => {
         axios
             .get('https://assets.aiolia.top/ElectronApps/DerbyPet/manifest.json', {
                 headers: {
@@ -50,11 +50,11 @@ export default function App() {
             .then((res) => {
                 const { latest } = res.data;
                 if (needUpdate(appVersion, latest)) setLatestVersion(latest);
-                else globalMessage.success({ content: '当前已是最新版本，无需更新' });
+                else if (showMessage) globalMessage.success({ content: '当前已是最新版本，无需更新' });
             });
-    }
+    }, [appVersion])
     useEffect(() => {
-        if (appVersion && localStorage.getItem('autoCheckForUpdate') !== 'false') checkForUpdate()
+        if (appVersion && localStorage.getItem('autoCheckForUpdate') !== 'false') checkForUpdate(false);
     }, [appVersion])
 
     return (

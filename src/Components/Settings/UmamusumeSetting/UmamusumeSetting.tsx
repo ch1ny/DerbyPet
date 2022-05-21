@@ -1,13 +1,13 @@
 import { CustomerServiceOutlined, EditOutlined, ReloadOutlined } from "@ant-design/icons";
 import { Button, Divider, Image, Select, Typography } from "antd";
 import { globalMessage } from "Components/GlobalMessage/GlobalMessage";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { setModifiedList, setUmaMusume, updateUmasMap } from "Utils/Store/actions";
 import store from "Utils/Store/store";
 import { UmasMapActionTypes, UmasMapPayload, UmasMapPayloadAudio, UmasMapPayloadPic } from "Utils/Types";
 import './style.scss';
 
-function returnUmaPics(umasMap: Map<string, UmasMapPayload>, nowUma: string, container: HTMLDivElement) {
+function returnUmaPics(umasMap: Map<string, UmasMapPayload>, nowUma: string) {
     const pics = ((umasMap.get(nowUma) as UmasMapPayload).pic as [UmasMapPayloadPic, UmasMapPayloadPic])
     return (
         <>
@@ -30,23 +30,21 @@ export default function UmamusumeSetting() {
     }), [])
 
     const [umasMap, setUmasMap] = useState(store.getState().umasMap)
-    useEffect(() =>
-        store.subscribe(() => {
-            setUmasMap(store.getState().umasMap)
-        })
-        , [])
+    useEffect(() => store.subscribe(() => {
+        setUmasMap(store.getState().umasMap)
+    }), [])
 
     const picsContainerRef = useRef<HTMLDivElement | null>(null)
 
     const umaInfo = umasMap.get(nowUma) as UmasMapPayload
 
     const audioRef = useRef<HTMLAudioElement | null>(null)
-    const handlePlay = function (audioUrl: string) {
+    const handlePlay = useCallback((audioUrl: string) => {
         const audio = (audioRef.current as HTMLAudioElement)
         audio.pause()
         audio.src = audioUrl;
         audio.play()
-    }
+    }, [])
 
     const [modifiedUmas, setModifiedUmas] = useState(store.getState().modifiedList);
     useEffect(() => store.subscribe(() => {
@@ -57,6 +55,7 @@ export default function UmamusumeSetting() {
         }
     }), [])
 
+    // INFO: 这个函数需要的参数每次视图更新都会更新，不需要放进useCallback中
     const handleModify = (type: string, url: string) => {
         const defaultJson = ((require('Views/umas')) as { [key: string]: UmasMapPayload })[`${nowUma}`];
 
@@ -82,39 +81,45 @@ export default function UmamusumeSetting() {
         }))
     }
 
+    const umaCode = useMemo(() => umaNameToCode(nowUma), [nowUma]);
+
     return (
         <div className="settingUmamusume">
             <div className="nowChosen">
                 <Typography.Title level={4}>当前正在使用的看板马娘</Typography.Title>
                 <Select
                     showSearch
-                    onSelect={(value: string) => {
+                    onSelect={useCallback((value: string) => {
                         store.dispatch(setUmaMusume(value))
-                    }}
-                    filterOption={(input, option) => {
+                    }, [])}
+                    filterOption={useCallback((input, option) => {
                         return (option?.value as string).indexOf(input) >= 0
-                    }}
+                    }, [])}
                     style={{ width: '10em' }}
                     value={nowUma}
                 >
                     <>
                         {
-                            (() => {
-                                const options = []
-                                for (const [key, value] of umasMap) {
-                                    options.push(
-                                        <Select.Option value={key} key={key}>{key}</Select.Option>
-                                    )
-                                }
-                                return options
-                            })()
+                            useCallback(
+                                () => {
+                                    const options = []
+                                    for (const [key, value] of umasMap) {
+                                        options.push(
+                                            <Select.Option value={key} key={key}>{key}</Select.Option>
+                                        )
+                                    }
+                                    return options
+                                },
+                                [umasMap],
+                            )()
+
                         }
                     </>
                 </Select>
             </div>
             <div className="chosenUmaPics" ref={picsContainerRef}>
                 {
-                    returnUmaPics(umasMap, nowUma, picsContainerRef.current as HTMLDivElement)
+                    returnUmaPics(umasMap, nowUma)
                 }
             </div>
             <div className="umaAudioSetting">
@@ -123,19 +128,25 @@ export default function UmamusumeSetting() {
                     title="点击互动"
                     audio={(umaInfo.audio as UmasMapPayloadAudio).click}
                     onPlay={handlePlay}
-                    onDefault={() => {
-                        handleModify('click', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/${umaNameToCode(nowUma)}.mp3`)
-                    }}
-                    onModify={(url) => { handleModify('click', url) }}
+                    onDefault={useCallback(
+                        () => {
+                            handleModify('click', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/${umaCode}.mp3`)
+                        },
+                        [umaCode],
+                    )
+                    }
+                    onModify={useCallback((url) => { handleModify('click', url) }, [handleModify])}
                 />
                 <UmaAudio
                     title="启动游戏"
                     audio={(umaInfo.audio as UmasMapPayloadAudio).start}
                     onPlay={handlePlay}
-                    onDefault={() => {
-                        handleModify('start', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/UmamusumePrettyDerby~/${umaNameToCode(nowUma)}.mp3`)
-                    }}
-                    onModify={(url) => { handleModify('start', url) }}
+                    onDefault={useCallback(
+                        () => {
+                            handleModify('start', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/UmamusumePrettyDerby~/${umaCode}.mp3`)
+                        },
+                        [umaCode])}
+                    onModify={useCallback((url) => { handleModify('start', url) }, [handleModify])}
                 />
                 <audio ref={audioRef} />
             </div>
@@ -151,7 +162,7 @@ interface UmaAudioProps {
     onDefault?: Function
 }
 function UmaAudio(props: UmaAudioProps) {
-    const handleUpdateUrl = (newUrl: string) => {
+    const handleUpdateUrl = useCallback((newUrl: string) => {
         if (newUrl === props.audio) {
             globalMessage.info('未发生改动')
             return
@@ -160,12 +171,12 @@ function UmaAudio(props: UmaAudioProps) {
         if (audioRegex.test(newUrl)) {
             if (props.onModify) {
                 props.onModify(newUrl)
+                globalMessage.success('自定义修改成功')
             }
-            globalMessage.success('自定义修改成功')
         } else {
             globalMessage.error('仅支持 mp3、ogg、wav 格式')
         }
-    }
+    }, [props.audio])
 
     return (
         <div className="umaAudios">

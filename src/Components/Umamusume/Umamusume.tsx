@@ -1,7 +1,7 @@
 import { CloudDownloadOutlined, ImportOutlined, PoweroffOutlined, SettingOutlined, UserSwitchOutlined } from '@ant-design/icons';
 import { Dropdown, Menu } from 'antd';
 import classNames from 'classnames';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { throttle } from 'Utils/Global';
 import { setUmaMusume } from 'Utils/Store/actions';
 import store from 'Utils/Store/store';
@@ -13,8 +13,8 @@ interface UmamusumeProps {
 }
 const translateRegex = new RegExp(/.*?translate\((\d{1,})px, (\d{1,})px\).*?/)
 
-function returnUmaPics(umasMap: Map<string, UmasMapPayload>, umaName: string, umaClicked: boolean) {
-	const pics = ((umasMap.get(umaName) as UmasMapPayload).pic as [UmasMapPayloadPic, UmasMapPayloadPic])
+function returnUmaPics(umaPayload: UmasMapPayload, umaClicked: boolean) {
+	const pics = (umaPayload.pic as [UmasMapPayloadPic, UmasMapPayloadPic])
 	return (
 		<>
 			<img
@@ -189,7 +189,7 @@ export default function Umamusume(props: UmamusumeProps) {
 		setUmasMap(store.getState().umasMap)
 	}), [])
 
-	const umamusumes = (() => {
+	const umamusumes = useMemo(() => {
 		const umasArray = []
 		for (const [key, val] of umasMap) {
 			umasArray.push({
@@ -198,18 +198,28 @@ export default function Umamusume(props: UmamusumeProps) {
 			})
 		}
 		return umasArray;
-	})()
+	}, [umasMap]);
 
-	const menuFunc = function (evt: { key: string }) {
+	const umaPayload = useMemo(() => (umasMap.get(umaName) as UmasMapPayload), [umasMap, umaName])
+
+	const startGame = useCallback(() => {
+		if (audioRef.current) {
+			audioRef.current.src =
+				(umaPayload.audio as UmasMapPayloadAudio).start
+			audioRef.current.load();
+			(window as any).ipc.send('START_GAME');
+			audioRef.current.play();
+		}
+	}, [umaPayload]);
+	const exchangeUmamusume = useCallback((uma: string) => {
+		store.dispatch(setUmaMusume(
+			umasMap.has(uma) ? uma : '特别周'
+		))
+	}, [umasMap]);
+	const menuFunc = useCallback((evt: { key: string }) => {
 		switch (evt.key) {
 			case 'START_GAME':
-				if (audioRef.current) {
-					audioRef.current.src =
-						((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).start
-					audioRef.current.load();
-					(window as any).ipc.send('START_GAME');
-					audioRef.current.play();
-				}
+				startGame();
 				break;
 			case 'QUIT':
 				(window as any).ipc.send('QUIT');
@@ -218,16 +228,14 @@ export default function Umamusume(props: UmamusumeProps) {
 				props.checkForUpdate();
 				break;
 			case 'SETTINGS':
-				(window as any).ipc.send('SHOW_SETTINGS')
+				(window as any).ipc.send('SHOW_SETTINGS');
 				break;
 			default:
-				store.dispatch(setUmaMusume(
-					umasMap.has(evt.key) ? evt.key : '特别周'
-				))
+				exchangeUmamusume(evt.key);
 				break;
 		}
 		setShowDropdown(false);
-	};
+	}, [props.checkForUpdate]);
 
 	const dropdownRef = useRef<HTMLDivElement | null>(null)
 
@@ -270,7 +278,7 @@ export default function Umamusume(props: UmamusumeProps) {
 					trigger={['contextMenu']}
 					visible={showDropdown}
 					onVisibleChange={setShowDropdown}
-					getPopupContainer={() => (dropdownRef.current ? dropdownRef.current : document.body)}
+					getPopupContainer={useCallback(() => (dropdownRef.current ? dropdownRef.current : document.body), [])}
 					destroyPopupOnHide={true}
 				>
 					<div
@@ -281,7 +289,7 @@ export default function Umamusume(props: UmamusumeProps) {
 						ref={desktopPetRef}>
 						<div style={{ opacity: needOpacity && !domAble ? umaOpacity : 1 }}>
 							{
-								returnUmaPics(umasMap, umaName, umaClicked)
+								useMemo(() => returnUmaPics(umaPayload, umaClicked), [umaPayload, umaClicked])
 							}
 						</div>
 					</div>
@@ -289,54 +297,62 @@ export default function Umamusume(props: UmamusumeProps) {
 				<audio
 					ref={audioRef}
 					preload='true'
-					src={((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).click}
-					onPlay={() => {
-						if (desktopPetRef.current) {
-							desktopPetRef.current.classList.remove('desktopContainer-rotateOut');
-							desktopPetRef.current.classList.add('desktopContainer-rotateOut');
-							setTimeout(() => {
-								if (desktopPetRef.current) {
-									desktopPetRef.current.classList.remove(
-										'desktopContainer-rotateOut'
-									);
-									desktopPetRef.current.classList.add(
-										'desktopContainer-rotateIn'
-									);
-									setUmaClicked(true);
-									setTimeout(() => {
-										if (desktopPetRef.current)
-											desktopPetRef.current.classList.remove(
-												'desktopContainer-rotateIn'
-											);
-									}, 200);
-								}
-							}, 200);
-						}
-					}}
-					onEnded={() => {
-						if (audioRef.current && desktopPetRef.current) {
-							audioRef.current.src =
-								((umasMap.get(umaName) as UmasMapPayload).audio as UmasMapPayloadAudio).click;
-							desktopPetRef.current.classList.add('desktopContainer-rotateOut');
-							setTimeout(() => {
-								if (desktopPetRef.current) {
-									desktopPetRef.current.classList.remove(
-										'desktopContainer-rotateOut'
-									);
-									desktopPetRef.current.classList.add(
-										'desktopContainer-rotateIn'
-									);
-									setUmaClicked(false);
-									setTimeout(() => {
-										if (desktopPetRef.current)
-											desktopPetRef.current.classList.remove(
-												'desktopContainer-rotateIn'
-											);
-									}, 200);
-								}
-							}, 200);
-						}
-					}}
+					src={(umaPayload.audio as UmasMapPayloadAudio).click}
+					onPlay={useCallback(
+						() => {
+							if (desktopPetRef.current) {
+								desktopPetRef.current.classList.remove('desktopContainer-rotateOut');
+								desktopPetRef.current.classList.add('desktopContainer-rotateOut');
+								setTimeout(() => {
+									if (desktopPetRef.current) {
+										desktopPetRef.current.classList.remove(
+											'desktopContainer-rotateOut'
+										);
+										desktopPetRef.current.classList.add(
+											'desktopContainer-rotateIn'
+										);
+										setUmaClicked(true);
+										setTimeout(() => {
+											if (desktopPetRef.current)
+												desktopPetRef.current.classList.remove(
+													'desktopContainer-rotateIn'
+												);
+										}, 200);
+									}
+								}, 200);
+							}
+						},
+						[],
+					)
+					}
+					onEnded={useCallback(
+						() => {
+							if (audioRef.current && desktopPetRef.current) {
+								audioRef.current.src =
+									(umaPayload.audio as UmasMapPayloadAudio).click;
+								desktopPetRef.current.classList.add('desktopContainer-rotateOut');
+								setTimeout(() => {
+									if (desktopPetRef.current) {
+										desktopPetRef.current.classList.remove(
+											'desktopContainer-rotateOut'
+										);
+										desktopPetRef.current.classList.add(
+											'desktopContainer-rotateIn'
+										);
+										setUmaClicked(false);
+										setTimeout(() => {
+											if (desktopPetRef.current)
+												desktopPetRef.current.classList.remove(
+													'desktopContainer-rotateIn'
+												);
+										}, 200);
+									}
+								}, 200);
+							}
+						},
+						[umasMap, umaName],
+					)
+					}
 				/>
 			</div>
 		</>
