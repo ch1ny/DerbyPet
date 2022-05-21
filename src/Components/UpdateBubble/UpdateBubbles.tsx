@@ -16,7 +16,7 @@ export default function UpdateBubbles(props: UpdateBubblesProps) {
 	const [targetVersion, setTargetVersion] = useState('');
 
 	useEffect(() => {
-		if (!props.targetVersion) {
+		if (props.targetVersion) {
 			setTargetVersion(props.targetVersion);
 		}
 	}, [props.targetVersion]);
