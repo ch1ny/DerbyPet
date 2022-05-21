@@ -10,6 +10,8 @@ export default function General() {
         })
     }, [])
 
+    const [autoCheckForUpdate, setAutoCheckForUpdate] = useState(localStorage.getItem('autoCheckForUpdate') !== 'false')
+
     return (
         <>
             <div>
@@ -24,6 +26,17 @@ export default function General() {
                 </Checkbox>
             </div>
             <span style={{ color: 'red', fontSize: '0.825em', fontWeight: 'bold' }}><ExclamationCircleOutlined /> 这是一项试验性功能，请谨慎启用</span>
+            <div style={{ marginTop: '0.5em' }}>
+                <Checkbox
+                    checked={autoCheckForUpdate}
+                    onChange={(evt) => {
+                        setAutoCheckForUpdate(evt.target.checked);
+                        localStorage.setItem('autoCheckForUpdate', String(evt.target.checked))
+                    }}
+                >
+                    启动时检查更新
+                </Checkbox>
+            </div>
         </>
     )
 }

@@ -40,22 +40,27 @@ export default function App() {
         })
     }, [])
 
+    const checkForUpdate = () => {
+        axios
+            .get('https://assets.aiolia.top/ElectronApps/DerbyPet/manifest.json', {
+                headers: {
+                    'Cache-Control': 'no-cache',
+                },
+            })
+            .then((res) => {
+                const { latest } = res.data;
+                if (needUpdate(appVersion, latest)) setLatestVersion(latest);
+                else globalMessage.success({ content: '当前已是最新版本，无需更新' });
+            });
+    }
+    useEffect(() => {
+        if (appVersion && localStorage.getItem('autoCheckForUpdate') !== 'false') checkForUpdate()
+    }, [appVersion])
+
     return (
         <>
             <Umamusume
-                checkForUpdate={() => {
-                    axios
-                        .get('https://assets.aiolia.top/ElectronApps/DerbyPet/manifest.json', {
-                            headers: {
-                                'Cache-Control': 'no-cache',
-                            },
-                        })
-                        .then((res) => {
-                            const { latest } = res.data;
-                            if (needUpdate(appVersion, latest)) setLatestVersion(latest);
-                            else globalMessage.success({ content: '当前已是最新版本，无需更新' });
-                        });
-                }}
+                checkForUpdate={checkForUpdate}
             />
 
             <UpdateBubbles visible={updating} targetVersion={latestVersion} />

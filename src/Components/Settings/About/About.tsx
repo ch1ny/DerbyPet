@@ -72,7 +72,7 @@ export default function About() {
     return (
         <div style={{ textAlign: 'center', userSelect: 'none' }}>
             <Image
-                src={require('./favicon.ico')}
+                src={'./electronAssets/favicon.ico'}
                 preview={false}
                 width={'200px'}
                 height={'175px'}

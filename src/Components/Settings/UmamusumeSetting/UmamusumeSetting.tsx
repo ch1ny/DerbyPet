@@ -124,7 +124,7 @@ export default function UmamusumeSetting() {
                     audio={(umaInfo.audio as UmasMapPayloadAudio).click}
                     onPlay={handlePlay}
                     onDefault={() => {
-                        handleModify('click', `https://cdn.jsdelivr.net/gh/ch1ny/AudioCDN/Umamusume/Uma/${umaNameToCode(nowUma)}.mp3`)
+                        handleModify('click', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/${umaNameToCode(nowUma)}.mp3`)
                     }}
                     onModify={(url) => { handleModify('click', url) }}
                 />
@@ -133,7 +133,7 @@ export default function UmamusumeSetting() {
                     audio={(umaInfo.audio as UmasMapPayloadAudio).start}
                     onPlay={handlePlay}
                     onDefault={() => {
-                        handleModify('start', `https://cdn.jsdelivr.net/gh/ch1ny/AudioCDN/Umamusume/Uma/UmamusumePrettyDerby~/${umaNameToCode(nowUma)}.mp3`)
+                        handleModify('start', `https://raw.sevencdn.com/ch1ny/AudioCDN/master/Umamusume/Uma/UmamusumePrettyDerby~/${umaNameToCode(nowUma)}.mp3`)
                     }}
                     onModify={(url) => { handleModify('start', url) }}
                 />
@@ -303,6 +303,10 @@ function umaNameToCode(umaName: string): string {
             return 'NishinoFlower';
         case '八重无敌':
             return 'YaenoMuteki';
+        case '艾尼斯风神':
+            return 'InesFujin';
+        case '目白善信':
+            return 'MejiroPalmer';
         case '大和赤骥':
             return 'DaiwaScarlet';
         case '黄金船':
