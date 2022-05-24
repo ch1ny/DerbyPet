@@ -1,5 +1,9 @@
 # Derby Pet
 
+> ## Gitee 访客须知
+>
+> 考虑到 Gitee 近期对开源仓库进行审核，本项目后续在 Gitee 上的更新可能会受到某些不可抗力的影响，因此本人决定将该仓库迁移至 [Github](https://github.com/ch1ny/DerbyPet)，Gitee 这边暂时仍会继续更新。
+
 ## 介绍
 
 一款为了能将 **ウマ娘　プリティーダービー** 加入 **Steam** 游玩而使用 **electron** 与 **React.js** 制作的一款赛马娘启动器。
@@ -16,7 +20,7 @@
 
 ### 方法一、使用 exe 安装程序（推荐）
 
-[点击进入](https://gitee.com/ch1ny/umamusume-driver/releases) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
+[点击进入](https://github.com/ch1ny/DerbyPet/releases/latest) Release 页面下载最新版本，~~解压缩后即可使用~~。下载安装包安装完毕后即可使用。
 
 ### 方法二、自行编译
 
@@ -50,21 +54,21 @@ yarn dist
 
 ## 更新日志
 
-<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-20</span>
+> ### 2022-05-20
 
-1. 由于中国大陆对 **jsdelivr** 进行了 DNS 污染，目前无法正常访问原先配置的云端音频文件，因此更换了 CDN 源，但是请求时间会稍长一些，建议用户选择本地音频文件进行配置。
-1. 将设置面板由原来的模态屏改为独立窗口
+ 1. 由于中国大陆对 **jsdelivr** 进行了 DNS 污染，目前无法正常访问原先配置的云端音频文件，因此更换了 CDN 源，但是请求时间会稍长一些，建议用户选择本地音频文件进行配置。
+ 2. 将设置面板由原来的模态屏改为独立窗口
 
-<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-09</span>
+> ### 2022-05-09
 
 1. 项目重构，渲染进程使用 React + TypeScript 的开发方式。
 
-<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-05-07</span>
+> ### 2022-05-07
 
 1. 移除 v1 版本中的主窗口，仅保留马娘桌宠部分。
 2. 发现打包后的马娘桌宠无法自动获取焦点，重写打包命令及 Inno Setup 脚本，使桌宠以管理员身份运行。
 
-<span style="background: dodgerblue; color: white; padding: 10px; font-size: 1.25rem; font-weight: bold">2022-03-04</span>
+> ### 2022-03-04
 
 1. 新增版本 v 1.1.0，大规模重构项目，为项目增添部分功能（仍不完善），并为后续项目远程更新留出接口。
 
@@ -82,8 +86,8 @@ yarn dist
 
 > 这里给自己挖个坑吧，如果大家有兴趣的话我后续会对这个项目进行更新，为该项目添加更多功能，让它至少看上去像一个启动器或是赛马娘工具。
 >
-> 由于本人目前正值大三下学期[^1]，面临考研以及就业的压力，大部分情况下我会优先考虑我的前途，希望各位能够包容我的这份不负责。（🙇
+> 由于本人目前正值大三下学期[^①]，面临考研以及就业的压力，大部分情况下我会优先考虑我的前途，希望各位能够包容我的这份不负责。（🙇
 
 
 
-[^1]:写于2022年5月9日
+[^①]:写于2022年5月9日
